@@ -1,0 +1,78 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ejemplo.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Fichero de ejemplo LaTeX que ilustra el uso de la Hoja de Estilo %%%%%%
+%%%%% Jornadas.cls para Jornadas Sarteco.              %%%%%%
+
+\documentclass[twocolumn,twoside]{Jornadas}
+\usepackage[latin1]{inputenc}
+\usepackage[dvips]{epsfig}
+\usepackage{url}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{theorem}{Teorema}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hyphenation{}
+
+\begin{document}
+
+
+\title{Arquitectura de monitorización de vehículos usando BLABLABA}
+
+\author{%
+     Pablo García Sánchez, Juan Julián Merelo, Pedro Castillo, A. M. Mora%
+     \thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pgarcia,jjmerelo,pedro,amorag}@atc.ugr.es}}
+     Rubén H. García, Miguel Ángel López, María Isabel López%
+     \thanks{Fundación I+D del Software Libre, Granada, e-mail: {\tt {malopez,rhgarcia,milopez}@fidesol.org}}
+}
+
+\maketitle
+% Oculta las cabeceras y los n\'umeros de p\'agina.
+% Ambos elemetos se a\~nadir\'an durante la edici\'on de las actas completas.
+\markboth{}{}
+\pagestyle{empty} 
+\thispagestyle{empty} % Oculta el n\'umero de la primera p\'agina
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{keywords}
+Bluetooth, Predicción del Tráfico, Monitorización, WiFi
+\end{keywords}
+
+\section{Introducci\'on}
+\PARstart{E}{s} un hecho innegable que nos encontramos \cite{Castillo13Indicadores}
+
+\section{Estado del arte}
+
+\section{Descripción del sistema}
+
+
+
+\begin{figure*}[ht] 
+\begin{center} 
+%\includegraphics[scale=0.35]{monitorNT}
+%\epsfig{file=images/sindicador.eps,width=12cm}
+
+\end{center} 
+\caption{Subsistema sindicador. Este sistema permite al usuario administrar el servidor y recibir información por el canal de retorno.} 
+\label{fig:sindicador} 
+\end{figure*}
+
+\section{Conclusiones}
+
+
+
+\section*{Agradecimientos}
+
+
+\bibliographystyle{Jornadas}
+\bibliography{monitorizacion-jce}
+
+\end{document}
