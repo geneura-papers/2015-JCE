@@ -5,7 +5,7 @@
 
 \documentclass[twocolumn,twoside]{Jornadas}
 \usepackage[latin1]{inputenc}
-\usepackage[dvips]{epsfig}
+\usepackage{graphicx}
 \usepackage{url}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -22,13 +22,13 @@
 \begin{document}
 
 
-\title{Arquitectura de monitorización de vehículos usando BLABLABA}
+\title{Arquitectura de bajo coste para monitorización de vehículos y personas usando Bluetooth y WiFi}
 
 \author{%
-     Pablo García Sánchez, Juan Julián Merelo, Pedro Castillo, A. M. Mora%
-     \thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pgarcia,jjmerelo,pedro,amorag}@atc.ugr.es}}
-     Rubén H. García, Miguel Ángel López, María Isabel López%
-     \thanks{Fundación I+D del Software Libre, Granada, e-mail: {\tt {malopez,rhgarcia,milopez}@fidesol.org}}
+     Pablo García-Sánchez, Antonio Fernández-Ares, Pedro Castillo, María Isabel García Arenas,  A. M. Mora, Gustavo Romero, Juan Julián Merelo %
+     \thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pablogarcia,antares,pacv,mgarenas,amorag,jmerelo}@ugr.es}}
+     Pedro García-Fernández%
+     \thanks{Departamento de Electrónica y Tecnología de  Computadores, Universidad de Granada, e-mail: {\tt pfernan@ditec.ugr.es }}
 }
 
 \maketitle
@@ -39,7 +39,7 @@
 \thispagestyle{empty} % Oculta el n\'umero de la primera p\'agina
 
 \begin{abstract}
-
+Actualmente existen distintos sistemas de monitorización de vehículos ... Este paper describe el entorno hardware y software de un sistema de monitorización de vehículos y personas utilizando Bluetooth y Wifi. 
 \end{abstract}
 
 \begin{keywords}
@@ -51,22 +51,52 @@ Bluetooth, Predicción del Tráfico, Monitorización, WiFi
 
 \section{Estado del arte}
 
+Otros trabajos han utilizado routers WiFi para posicionaminto. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots wifi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
+
+En \cite{Castillo13Indicadores} se presentó una versión preliminar del sistema descrito en este trabajo. En ese trabajo se mostraron unos prototipos de monitorización basados en arquiectura microPC, junto con algunos datos de monitorización. Sin embargo, ese trabajo no explicaba el proceso de captación de datos ni describía la arquitectura software y hardware del sistema (que además, estaba en un versión anterior a la presentada aquí). El presente trabajo, por lo tanto, permitirá a nuevos investigadores desarrollar su propio sistema de monitorización teniendo en cuenta las decisiones de diseño tomadas para esta nueva versión. 
+
 \section{Descripción del sistema}
 
+El sistema explicado en este artículo está formado por dos elementos: el sistema hardware (dispositivos físicos de monitorización y servidor) y el sistema software (software de captación en los dispositivos y del servidor).
 
 
+\subsection{Descripción del hardware}
+
+\subsection{Dispositivos de monitorización}
+
+Los dispositivos utilizados están compuestos de los siguientes elementos:
+\begin{itemize}
+\item Dispositivo de procesamiento
+\item Antenas de captación
+\item Caja protectora
+\end{itemize}
+
+\begin{figure*}[htb] 
+\centering
+\includegraphics[width=10cm]{imags/raspi.pdf}
+%\epsfig{file=images/sindicador.eps,width=12cm}
+
+\caption{Raspberry Pi utilizada en los dispositivos de monitorización.} 
+\label{fig:raspberry} 
+\end{figure*}
+
+
+\subsection{Descripción del software}
 \begin{figure*}[ht] 
 \begin{center} 
 %\includegraphics[scale=0.35]{monitorNT}
 %\epsfig{file=images/sindicador.eps,width=12cm}
 
 \end{center} 
-\caption{Subsistema sindicador. Este sistema permite al usuario administrar el servidor y recibir información por el canal de retorno.} 
+\caption{Descripción del sistema.} 
 \label{fig:sindicador} 
 \end{figure*}
 
-\section{Conclusiones}
+\section{Prototipo experimental}
 
+\section{Conclusiones y trabajo futuro}
+
+Como trabajo futuro se está planteando utilizar el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá añadir nuevos dispositivos de captación (GSM, luminosidad, temperatura, etc.).
 
 
 \section*{Agradecimientos}

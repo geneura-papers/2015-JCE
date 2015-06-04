@@ -7,4 +7,4 @@ rm *.log
 rm *~
 rm *.dvi
 
-latex monitorizacion-jce.tex && latex monitorizacion-jce.tex &&  latex monitorizacion-jce.tex && bibtex monitorizacion-jce && latex monitorizacion-jce.tex && latex monitorizacion-jce.tex && latex monitorizacion-jce.tex && echo "-----------------------------" && dvips monitorizacion-jce.dvi -o && ps2pdf monitorizacion-jce.ps && echo " "
+pdflatex monitorizacion-jce.tex && pdflatex monitorizacion-jce.tex &&  pdflatex monitorizacion-jce.tex && bibtex monitorizacion-jce && pdflatex monitorizacion-jce.tex && pdflatex monitorizacion-jce.tex && pdflatex monitorizacion-jce.tex && echo "-----------------------------" 
