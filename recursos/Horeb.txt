@@ -1,0 +1,37 @@
+pi@raspberrypi ~ $ df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+rootfs           3125900 2658372    298808  90% /
+/dev/root        3125900 2658372    298808  90% /
+devtmpfs          215824       0    215824   0% /dev
+tmpfs              44820     240     44580   1% /run
+tmpfs               5120       0      5120   0% /run/lock
+tmpfs              89620       0     89620   0% /run/shm
+/dev/mmcblk0p1     57288   19072     38216  34% /boot
+/dev/mmcblk0p3  11582963   39247  10941421   1% /usr/share/raziel
+tmpfs              15360     100     15260   1% /tmp
+tmpfs              15360    6516      8844  43% /var/log
+
+
+cat /proc/version 
+Linux version 3.10.24+ (dc4@dc4-arm-01) (gcc version 4.7.2 20120731 (prerelease) (crosstool-NG linaro-1.13.1+bzr2458 - Linaro GCC 2012.08) ) #614 PREEMPT Thu Dec 19 20:38:42 GMT 2013
+
+cat /proc/cpuinfo 
+processor	: 0
+model name	: ARMv6-compatible processor rev 7 (v6l)
+BogoMIPS	: 2.00
+Features	: swp half thumb fastmult vfp edsp java tls 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xb76
+CPU revision	: 7
+
+Hardware	: BCM2708
+Revision	: 000e
+Serial		: 00000000a3c83cc9
+
+
+
+cat /boot/cmdline.txt
+dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 dwc_otg.speed=1 elevator=deadline rootwait usbcore.autosuspend=-1
+
