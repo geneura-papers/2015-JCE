@@ -25,9 +25,9 @@
 \title{Arquitectura de bajo coste para monitorización de vehículos y personas usando Bluetooth y WiFi}
 
 \author{%
-     Pablo García-Sánchez, Antonio Fernández-Ares, Pedro Castillo, María Isabel García Arenas,  A. M. Mora, Gustavo Romero, Juan Julián Merelo %
+     P. García-Sánchez, A. Fernández-Ares, P. A. Castillo, M. I. García Arenas,  P. de las Cuevas, A. M. Mora, G. Romero, J. J. Merelo %
      \thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pablogarcia,antares,pacv,mgarenas,amorag,jmerelo}@ugr.es}}
-     Pedro García-Fernández%
+     P. García-Fernández%
      \thanks{Departamento de Electrónica y Tecnología de  Computadores, Universidad de Granada, e-mail: {\tt pfernan@ditec.ugr.es }}
 }
 
@@ -39,7 +39,7 @@
 \thispagestyle{empty} % Oculta el n\'umero de la primera p\'agina
 
 \begin{abstract}
-Actualmente existen distintos sistemas de monitorización de vehículos ... Este paper describe el entorno hardware y software de un sistema de monitorización de vehículos y personas utilizando Bluetooth y Wifi. 
+Actualmente existen distintos sistemas de monitorización de vehículos y personas, como las espiras o cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de estos sistemas no permiten una idenfiticación univoca de un mismo vehículo o persona. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de datos, que permitan un procesamiento en tiempo real para proporcionar a los ciudadanos  información para la toma de decisiones en el ámbito de la movilidad. Este paper describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas detectando el Bluetooth y Wifi (de forma anónima) de los dispositivos móviles de los usuarios. 
 \end{abstract}
 
 \begin{keywords}
@@ -47,15 +47,92 @@ Bluetooth, Predicción del Tráfico, Monitorización, WiFi
 \end{keywords}
 
 \section{Introducci\'on}
-\PARstart{E}{s} un hecho innegable que nos encontramos \cite{Castillo13Indicadores}
+
+
+\PARstart{L}{a}  mayoría de los sistemas empleados para monitorizar el flujo
+de tráfico en las carreteras resultan excesivamente caros para
+una implantación en masa, y además solo recogen información
+sobre la cantidad de vehículos que han circulado. Además, esas
+tecnologías son incapaces de identificar el mismo vehículo en
+diferentes sitios sitios u ocurrencias sobre el mismo dispositivo
+capturador, limitándose tan solo a contar y obtener algún tipo
+de información vaga sobre el tipo de vehículo \cite{traffic13,martin2003detector}.
+Contar con un sistema de información sobre el estado del trafico
+y la predicción del uso de la red viaria por parte de los vehículos
+se antoja clave en el contexto actual. Con una población cada vez
+más informada y con dispositivos de comunicación ubicuos (como teléfonos móviles) que
+poseen y usan habitualmente prácticamente el 90\% de la población,
+obtener información sobre cómo se encuentra el tráfico en
+cualquier momento en cualquiera de los casi 20.000 kilómetros
+con los que cuenta la red viaria nacional, significaría poder gestionar
+de manera óptima una red de comunicaciones vital para
+un porcentaje elevado de usuarios.
+Tal sistema ayudaría a las políticas urbanísticas y de ordenación
+territorial coordinadas con las de movilidad al reducir la necesidad
+de desplazamiento al poder planificar los ciudadanos sus
+desplazamientos (incluso en transporte público).
+La aplicación de esta propuesta en el transporte supondría disponer
+de un sistema de información sobre el estado del trafico
+y de predicción del uso de la red viaria por parte de los vehículos.
+También ayudaría a gestionar de manera óptima una red de
+comunicaciones vital para un procentaje elevado de usuarios.
+La primera consecuencia directa sería un aprovechamiento más
+eficiente del uso de los vehículos en los desplazamientos, por lo
+que se podría esperar un menor número de trayectos en vehículo
+privado, o al menos más optimizados.
+Estos objetivos son los que nos hemos planteado en el presente
+desarrollo, y pasan por contar con un sistema de información y
+de predicción de tráfico para que puedan ser utilizados con el
+fin de reducir los desplazamientos individuales, así como incrementar
+los desplazamientos en transporte público.
+Nuestro objetivo final es disponer de información acerca de los
+flujos de tráfico que se producen entre ciudades, lo que permitirá
+poder gestionar de manera óptima las decisiones de desplazamiento
+por parte de los ciudadanos.
+La idea es obtener un sistema de ayuda a la toma de decisiones,
+capaz de aplicar conocimiento en aplicaciones comerciales
+relacionadas con la movilidad.
+
+Para ello, el procesamiento de los datos adquiridos con estos
+sistemas requiere de algoritmos complejos de minería de datos,
+computación evolutiva y redes neuronales, aprendizaje automático
+ y de métodos estadísticos, que se irán desarrollando e integrando
+como servicios web en el sistema.
+
+Por tanto, encontramos que se tienen varias necesidades desde
+el punto de vista de la gestión del transporte:
+\begin{itemize}
+\item Se necesitará un dispositivo autónomo y versátil de recogida
+de datos y monitorización.
+\item Además es necesario recopilar los datos del tráfico en tiempo
+real.
+\item Una vez se tienen los datos, hay que procesarlos de manera
+correcta para poder ofrecer la información específica necesaria.
+\item También se necesita un sistema que teniendo en cuenta la
+evolución de los actuales sistemas de información, permita
+poder compartir esos datos con aquellos que toman decisiones
+sobre movilidad, no sólo desde el punto de vista
+institucional sino también desde el punto de vista personal.
+\item Por último, y máxime en el contexto actual, se necesita un
+sistema de información que sea de bajo coste, que permita
+su amortización de la manera más rápida posible y que
+posibilite que sea capitalizado por parte de todo tipo de
+agentes en la ciudad.
+\end{itemize}
+
+Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. Una versión anterior de la misma fue presentada en \cite{Castillo13Indicadores}, donde distintos datos de monitorización fueron recolectados y mostrados. Sin embargo,
+ese trabajo no mostraba de forma clara una descripción clara del sistema a desarrollar, salvo una breve descripción del mismo. El presente trabajo lo complementa, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, además de mostrar las nuevas funcionalidades añadidas.
+
+El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección \ref{sec:soa}), la parte hardware y software del sistema es descrita en la Sección \ref{sec:descripcion}. Los resultados de un prototipo experimental se comentan en la Sección \ref{sec:prototipo} y finalmente se presentan las conclusiones y trabajo futuro. 
 
 \section{Estado del arte}
-
+\label{sec:soa}
 Otros trabajos han utilizado routers WiFi para posicionaminto. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots wifi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
 
 En \cite{Castillo13Indicadores} se presentó una versión preliminar del sistema descrito en este trabajo. En ese trabajo se mostraron unos prototipos de monitorización basados en arquiectura microPC, junto con algunos datos de monitorización. Sin embargo, ese trabajo no explicaba el proceso de captación de datos ni describía la arquitectura software y hardware del sistema (que además, estaba en un versión anterior a la presentada aquí). El presente trabajo, por lo tanto, permitirá a nuevos investigadores desarrollar su propio sistema de monitorización teniendo en cuenta las decisiones de diseño tomadas para esta nueva versión. 
 
 \section{Descripción del sistema}
+\label{sec:descripcion}
 
 El sistema explicado en este artículo está formado por dos elementos: el sistema hardware (dispositivos físicos de monitorización y servidor) y el sistema software (software de captación en los dispositivos y del servidor).
 
@@ -71,9 +148,14 @@ Los dispositivos utilizados están compuestos de los siguientes elementos:
 \item Caja protectora
 \end{itemize}
 
+El dispositivo de monitorización está basado en una Raspberry Pi modelo B.
+
+
+
+
 \begin{figure*}[htb] 
 \centering
-%\includegraphics[width=10cm]{imags/raspi.eps}
+\includegraphics[width=10cm]{imags/raspi.pdf}
 %\epsfig{file=images/sindicador.eps,width=12cm}
 
 \caption{Raspberry Pi utilizada en los dispositivos de monitorización.} 
@@ -83,15 +165,15 @@ Los dispositivos utilizados están compuestos de los siguientes elementos:
 
 \subsection{Descripción del software}
 
-El software que soporta el sistema, está formado por varios módulos independientes, que se relacionan entre ellos según la figura \ref{fig:sindicador}. 
+El software que soporta el sistema, está formado por varios módulos independientes, que se relacionan entre ellos según la figura \ref{fig:sistema}. 
 
 \begin{figure*}[ht] 
 \begin{center} 
-\includegraphics[scale=0.35]{imags/DiagramaSoftware.eps}
+\includegraphics[scale=0.35]{imags/DiagramaSoftware.pdf}
 %\epsfig{file=imags/DiagramaSoftware.eps,width=7cm}
 \end{center} 
 \caption{Descripción del sistema.} 
-\label{fig:sindicador} 
+\label{fig:sistema} 
 \end{figure*}
 
 Como se puede apreciar en el sistema, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, Raziel, Lilith, Abdiel, Ezequiel y Anan que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith implementados en Java y en PHP respectivamente y ambas corren sobre el sistema operativo Horeb. Ambas partes de forma independiente envían datos a Abdiel, también implemenado en PHP, que es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. De las consultas a la base de datos Alejandría se ocupa Ezequiel, también implementado en PHP. Tanto Ezequiel, como Abdiel se ejecutan de forma simultánea en el servidor donde está almacenada la base de datos. Este servidor tiene un sistema operativo Linux. Por último Anan  .....
@@ -106,8 +188,7 @@ En el párrafo anterior hemos descrito un la relación entre las partes y los dife
  \item Inicializa la hebra de captación BT que se ejecutará durante todo el tiempo que Raziel esté ejecutándose. Esta hebra se encarga de detectar nuevos dispositivos BT, monitorizarlos registrando durante cuanto tiempo son detectados y notificar dicha información a Abdiel cada cierto tiempo.
  \item ... Voy por aquí.
  \end{enumerate}
- \item{
- \end{itemize}
+
 \item Lilith
 \item Abdiel
 \item Ezequiel
@@ -117,13 +198,23 @@ En el párrafo anterior hemos descrito un la relación entre las partes y los dife
 
 
 \section{Prototipo experimental}
+\label{sec:prototipo}
+
 
 \section{Conclusiones y trabajo futuro}
+\label{sec:conclusiones}
 
-Como trabajo futuro se está planteando utilizar el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá añadir nuevos dispositivos de captación (GSM, luminosidad, temperatura, etc.).
+Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización, de bajo coste, autónomos y que permitan la detección univoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de los dispositivos Bluetooth y WiFi de los agentes a medir, permitiendo su identificación de forma univoca y anónima. Los elementos software y hardware han sido descritos, junto con los datos de un prototipo funcional.
+
+Como trabajo futuro se está planteando utilizar el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá añadir nuevos dispositivos de captación (GSM, luminosidad, temperatura, etc.). Además, distintos algoritmos de predicción, y combinación con otras fuentes de datos serán añadidos al servidor de procesamiento.
 
 
 \section*{Agradecimientos}
+Este artículo ha sido financiado en parte por los proyectos
+TIN2014-56494-C4-3-P (EphemeCH),
+SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013),
+SPIP2014-01437 (Dirección General de Tráfico), 
+PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) y PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
 
 
 \bibliographystyle{Jornadas}
