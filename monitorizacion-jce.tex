@@ -251,8 +251,40 @@ El monitor está pendiente de la cola de ocurrencias detectadas. Esta hebra es la
 
 El difusor, periódicamente manda al servidor mediante una petición REST los datos comprimidos de los pasos de los dispositivos.
 
+\subsection{LILITH: Pasarela de red}
 
-\subsection{Descripción del software}
+Dado que el sistema puede ser implantado en un sistema de red complejo como puede ser el perteneciente a un organismo público, nos vemos en la problemática de comunicar nuestros dispositivos con nuestro servidor de forma que no suponga una vulnerabilidad en la red o en redes que no dispongan de salida a internet ya que sean de ámbito local.
+
+Para ello se puede habilitar una Raspberry Pi corriendo HOREB como sistema operativo, y haciendo uso del sistema LILITH para hacer la redirección del tráfico entre las otras Raspberry y el Servidor.
+
+De esta forma Lilith sirve como pasarela de red entre las dos redes, la local y la red global que comunica al servidor.
+
+\subsection{ABDIEL: El servidor de entrada de datos}
+
+ABDIEL es el software que provee los servicios de la API REST de comunicación empleados por RAZIEL. Está desarrollado en PHP haciendo especial cuidado en la atomicidad de las operaciones.
+
+Entre otros servicios, proporciona la conexión y desconexión al sistema de los software de captación, el sistema de privilegios, el servicio de actualización del software y la incoporación de pasos de dispositivos al sistema.
+
+El servicio encargado de almacenar los pasos, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos ALEJANDRÍA.
+
+\subsection{ALEJANDRÍA: Base de datos local}
+
+ALEJANDRÍA es la base de datos donde son almacenados la información de los pasos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas, e índices que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
+
+Dispone de procedimientos optimizados para el cálculo del número total de dispositivos en ventanas temporales para los dispositivos de captación, así como para el cálculo de re-ocurrencia de dispositivos en distintos nodos.
+
+Estos procedimientos son invocados por el software EZEQUIEL para sumarizar los datos y publicarlos en la nube.
+
+\subsection{EZEQUIEL: Publicación en la nube}
+
+Ezequel es el software encargado del acceso a la base datos, conseguir resúmenes de los datos, aplicar los algoritmos de predicción y minería de datos y difundir los resultados en la nube ANAN.
+
+\subsection{ANAN: La nube}
+
+Anan es el nombre otorgado a la nube basada en la tecnología de Google en la que se almacenan los datos con el fin de darle difusión a los mismos. En Anan los datos son almacenados en tablas BigTable NoSQL mediante la tecnología de Google Fusion Tables. Esta tecnología provee una base de datos geolocalizada, siendo la empleada en otras tecnologías de Google como Google Maps.
+
+Anan se encarga también de proveer gráficas interactivas y mapas del estado historico, actual y predicho de los distintos nodos.
+
 
 El software que soporta el sistema, está formado por varios módulos independientes, que se relacionan entre ellos según la figura \ref{fig:sistema}. 
 
