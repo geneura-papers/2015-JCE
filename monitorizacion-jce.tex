@@ -73,7 +73,7 @@ Los dispositivos utilizados están compuestos de los siguientes elementos:
 
 \begin{figure*}[htb] 
 \centering
-\includegraphics[width=10cm]{imags/raspi.pdf}
+%\includegraphics[width=10cm]{imags/raspi.eps}
 %\epsfig{file=images/sindicador.eps,width=12cm}
 
 \caption{Raspberry Pi utilizada en los dispositivos de monitorización.} 
@@ -82,15 +82,39 @@ Los dispositivos utilizados están compuestos de los siguientes elementos:
 
 
 \subsection{Descripción del software}
+
+El software que soporta el sistema, está formado por varios módulos independientes, que se relacionan entre ellos según la figura \ref{fig:sindicador}. 
+
 \begin{figure*}[ht] 
 \begin{center} 
-%\includegraphics[scale=0.35]{monitorNT}
-%\epsfig{file=images/sindicador.eps,width=12cm}
-
+\includegraphics[scale=0.35]{imags/DiagramaSoftware.eps}
+%\epsfig{file=imags/DiagramaSoftware.eps,width=7cm}
 \end{center} 
 \caption{Descripción del sistema.} 
 \label{fig:sindicador} 
 \end{figure*}
+
+Como se puede apreciar en el sistema, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, Raziel, Lilith, Abdiel, Ezequiel y Anan que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith implementados en Java y en PHP respectivamente y ambas corren sobre el sistema operativo Horeb. Ambas partes de forma independiente envían datos a Abdiel, también implemenado en PHP, que es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. De las consultas a la base de datos Alejandría se ocupa Ezequiel, también implementado en PHP. Tanto Ezequiel, como Abdiel se ejecutan de forma simultánea en el servidor donde está almacenada la base de datos. Este servidor tiene un sistema operativo Linux. Por último Anan  .....
+
+% Antares amplía aquí un poco sobre Anan.
+
+En el párrafo anterior hemos descrito un la relación entre las partes y los diferentes sistemas operativos y lenguajes que hemos utilizado. A continuación detallaremos un poco la función de cada una de las partes, intentando no entrar en muchos detalles, puesto que no disponemos del suficiente espacio.
+\begin{itemize}
+\item Raziel: La función de Raziel es la captación de dispositivos. Esta captación se hace escaneando el entorno donde está situado y captando paquetes BT o Wifi que emiten los dispositivos cuando intentan descubrir otros dispositivos BT o un punto de acceso Wifi a los que conectarse. Los pasos que sigue Raziel a grandes rasgos son:
+ \begin{enumerate}
+ \item Comprobación de que la conexión a red para conectar con Abdiel está disponible, ya sea de forma inalámbrica o alámbrica.
+ \item Inicializa la hebra de captación BT que se ejecutará durante todo el tiempo que Raziel esté ejecutándose. Esta hebra se encarga de detectar nuevos dispositivos BT, monitorizarlos registrando durante cuanto tiempo son detectados y notificar dicha información a Abdiel cada cierto tiempo.
+ \item 
+ \end{enumerate}
+ \item{
+ \end{itemize}
+\item Lilith
+\item Abdiel
+\item Ezequiel
+\item Anan
+\end{itemize}
+
+
 
 \section{Prototipo experimental}
 
