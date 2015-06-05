@@ -130,9 +130,28 @@ El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección
 
 \section{Estado del arte}
 \label{sec:soa}
-Otros trabajos han utilizado routers WiFi para posicionaminto. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots wifi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
+
+
+Hoy en día, existen varias tecnologías para la recopilación de datos y posterior extracción de información sobre el estado de las carreteras y monitorización del tráfico. Estos sistemas pueden clasificarse en función de la inmediatez de los datos, de lo completa que sea la cantidad de información obtenida, y del grado de invasión (Martin et al., 2003).
+
+Según la inmediatez con la que se obtienen los datos, los sistemas pueden clasificarse como de obtención directa (la fuente obtiene los datos de manera experimental), o indirecta (los datos son el resultado de un posterior procesado algorítmico).
+
+Por otra parte, las tecnologías de monitorización actuales pueden considerarse invasivas si éstas están instaladas en el pavimento de la carreteras, no invasivas cuando los sistemas no tienen contacto con la carretera y tienen mínimo o nulo efecto sobre el flujo de tráfico, o bien son tecnologías de monitorización a través de vehículos flotantes.
+
+Así los principales métodos de monitoración del tráfico se basan en el uso de tubos neumáticos, espiras o vehículos flotantes. La principal desventaja de estos sistemas es que no capaces de identificar de forma única los vehículos detectados, con el fin de trazar matrices origen/destino. Además se centran sólo en la detección de vehículos, ignorando aspectos como el número de ocupantes por vehículo u los desplazamientos a pie.
+
+En los últimos años, las tecnologías que facilitan el reconocimiento automático de vehículos se han visto fortalecidos debido a que si son capaces de detectar vehículos de manera unívoca. Es el caso de la detección a través de las imágenes de vídeo, mediante OCR de las mátriculas. Sin embargo la agencia de Protección de Datos española especifica que los sistemas que obtengan datos de tipo personal (como son las matrículas) requieren de consentimiento expreso por parte del usuario.
+
+
+Además estos sistemas son muy costosos tanto en implantación como en mantenimiento por lo que su colocación en carretras secundarias y vías urbanas resulta económicamente inviable, por lo únicamente son empleados en las carreteras primarias.
+
+El empleo de dispositivos de bajo coste como el propuesto, monitorizando las señales Wifi y Bluetooth de los dispositivos inteligentes permite superar las limitaciones de los anteriores sistemas. Se identifica de forma única a cada dispositivo pero sin vulnerar la ley de protección de datos, dado que no existe un registro ni forma de vincular un dispositivo con su usuario o dueño. Su bajo coste permite su despliegue en zonas que de otra manera no estarían siendo monitorizadas.
+
+Existen sistemas que han utilizado routers WiFi para posicionaminto. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots wifi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
 
 En \cite{Castillo13Indicadores} se presentó una versión preliminar del sistema descrito en este trabajo. En ese trabajo se mostraron unos prototipos de monitorización basados en arquiectura microPC, junto con algunos datos de monitorización. Sin embargo, ese trabajo no explicaba el proceso de captación de datos ni describía la arquitectura software y hardware del sistema (que además, estaba en un versión anterior a la presentada aquí). El presente trabajo, por lo tanto, permitirá a nuevos investigadores desarrollar su propio sistema de monitorización teniendo en cuenta las decisiones de diseño tomadas para esta nueva versión. 
+
+
 
 \section{Descripción del sistema}
 \label{sec:descripcion}
