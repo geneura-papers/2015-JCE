@@ -1,0 +1,35 @@
+TECNOLOGÍAS ACTUALES
+
+Hoy en día, existen varias tecnologías para la recopilación de datos y posterior extracción de información sobre el estado de las carreteras y monitorización del tráfico. Estos sistemas pueden clasificarse en función de la inmediatez de los datos, de lo completa que sea la cantidad de información obtenida, y del grado de invasión (Martin et al., 2003).
+
+Según la inmediatez con la que se obtienen los datos, los sistemas pueden clasificarse como de obtención directa (la fuente obtiene los datos de manera experimental), o indirecta (los datos son el resultado de un posterior procesado algorítmico).
+
+Por otra parte, y respecto a la minuciosidad del proceso de recopilación de datos, los sistemas pueden considerarse exhaustivos cuando realizan el mismo número de mediciones que usuarios son monitorizados, o no exhaustivos cuando se toman muestras de un número limitado de usuarios.
+
+Finalmente, las tecnologías de monitorización actuales pueden considerarse invasivas si éstas están instaladas en el pavimento de la carreteras, no invasivas cuando los sistemas no tienen contacto con la carretera y tienen mínimo o nulo efecto sobre el flujo de tráfico, o bien son tecnologías de monitorización a través de vehículos flotantes.
+
+La Figura 1 muestra cómo quedarían clasificados los sistemas de información de acuerdo al grado de invasión de la tecnología.
+
+Entre las principales tecnologías actuales de monitorización de tráfico se encuentran los tubos neumáticos, las espiras, los vehículos flotantes, y los sistemas de reconocimiento automático, entre otros (Rodrigue et al., 2013).
+
+Los tubos neumáticos se colocan por encima del suelo y perpendicular al sentido de la carretera para detectar vehículos en función de la presión que éstos hagan al pasar sobre los tubos. De este modo, y conectados a un dispositivo situado en un lado de la carretera, se produce el conteo de vehículos. El mayor inconveniente consiste en que su eficiencia depende del clima, la temperatura, y las condiciones del tráfico.
+
+Una espira consiste en un cable que va incluído en la carretera, colocado en forma de cuadrado. Un dispositivo colocado a uno de los lados de la carretera anota el número de vehículos que han sido detectados debido a que éstos generan una corriente eléctrica al pasar por encima del cable. Sin embargo, tanto la instalación de las espiras como su mantenimiento, pueden ser bastante costosos.
+
+Por otro lado, la obtención de información a través de vehículos flotantes consiste en el uso de sensores colocados en un determinado vehículo que sigue una ruta predefinida. Este tipo de dispositivos, que recopilan información de manera activa, es uno de los más populares y es usado principalmente para la obtención de información sobre el tiempo de recorrido, así como para la calibración de las espiras. El coste del uso de estos dispositivos varía en función del nivel de automatización que haya en el proceso de obtención de datos.
+
+La principal desventaja de los sistemas descritos es que no son capaces de identificar los vehículos que son detectados, con el fin de trazar matrices origen/destino. Si bien calculan el número y el tipo de vehículos, no ofrecen datos acerca del flujo de tráfico, ni sobre la cantidad de veces que un mismo vehículo pasa por un determinado punto. Además, debido al alto coste que implica su uso y mantenimiento, su colocación en carreteras secundarias resulta inviable, por lo que usualmente son las carreteras primarias las únicas que son monitorizadas.
+
+De este modo, en los últimos años las tecnologías que facilitan el reconocimiento automático de vehículos se han visto favorecidas, debido a su capacidad de detectar vehículos de manera unívoca, sin tener en cuenta sistemas que van a bordo de los propios vehículos. Es el caso de la detección a través de imágenes de vídeo. En este caso, se usan tanto la línea de trayectoria como el seguimiento de los vehículos para la monitorización del tráfico, así como para la detección de accidentes de carretera, lo cual supone una ventaja sobre el resto de sistemas de información. Sin embargo, el clima también afecta a la precisión de este tipo de sistemas. Incluso, pueden llegar a ser más costosos que los sistemas ya mencionados (Skszek et al., 2001). Por último, la Agencia de Protección de Datos española especifica que los sistemas que obtengan datos de tipo personal, como lo son las matrículas de los vehículos, requieren de consentimiento por parte del usuario.
+
+Productos comerciales
+
+Existen diferentes compañías que hacen uso de las técnicas descritas en este artículo, con el fin de extraer información sobre el tráfico en una determinada vía:
+
+* Bit Carrier (Mendez, 2013; BitCarrier, 2013): Ofrece un sistema de gestión del tráfico basado en BT, tratando de contar personas para la identificación de rutas comerciales (pathsolver). Esta solución fue implantada en autovías gestionadas por la compañía Abertis para el control y monitorización del tráfico. En la actualidad, tienen instalada una red de 150 dispositivos en Cataluña, de modo que permita el conteo de los tiempos de desplazamiento de cerca de 200.000 personas al día.
+* Trafficnow (Trafficnow, 2013): Es otro producto basado en BT, y cuyas pruebas piloto se han realizado en las carreteras de Vigo.
+* Traffax Inc (TraffaxInc, 2013): Esta compañía se ha centrado en el uso del BT para la elaboración de matrices origen-destino, así como para el cálculo del tiempo de recorrido.
+* Savari Networks (SavariNetworks, 2013): Ofrece un producto comercial denominado StreetWAVE para monitorización del tráfico, con el fin de conocer el estado del tráfico en tiempo real.
+* TrafficCast (TrafficCast, 2013): Compañía que ha desarrollado modelos de predicción en diferentes ciudades a través del uso de diferentes tecnologías tales como cámaras, o BT y RFID, cuando están incluídas en los vehículos.
+
+La tecnología que se propone en este artículo comparte muchas de las características ya descritas en otros sistemas, de manera que ofrece las mismas ventajas a la vez que añade una adicional, que es el bajo coste.
