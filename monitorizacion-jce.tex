@@ -96,7 +96,7 @@ El software que soporta el sistema, está formado por varios módulos independient
 
 Como se puede apreciar en el sistema, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, Raziel, Lilith, Abdiel, Ezequiel y Anan que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith implementados en Java y en PHP respectivamente y ambas corren sobre el sistema operativo Horeb. Ambas partes de forma independiente envían datos a Abdiel, también implemenado en PHP, que es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. De las consultas a la base de datos Alejandría se ocupa Ezequiel, también implementado en PHP. Tanto Ezequiel, como Abdiel se ejecutan de forma simultánea en el servidor donde está almacenada la base de datos. Este servidor tiene un sistema operativo Linux. Por último Anan  .....
 
-% Antares amplía aquí un poco sobre Anan.
+% Antares amplía aquí un poco sobre Anan, lenguaje y relación con las demás partes, la función o la descripción de lo que hace, está en el itemize del siguiente párrafo.
 
 En el párrafo anterior hemos descrito un la relación entre las partes y los diferentes sistemas operativos y lenguajes que hemos utilizado. A continuación detallaremos un poco la función de cada una de las partes, intentando no entrar en muchos detalles, puesto que no disponemos del suficiente espacio.
 \begin{itemize}
@@ -104,14 +104,14 @@ En el párrafo anterior hemos descrito un la relación entre las partes y los dife
  \begin{enumerate}
  \item Comprobación de que la conexión a red para conectar con Abdiel está disponible, ya sea de forma inalámbrica o alámbrica.
  \item Inicializa la hebra de captación BT que se ejecutará durante todo el tiempo que Raziel esté ejecutándose. Esta hebra se encarga de detectar nuevos dispositivos BT, monitorizarlos registrando durante cuanto tiempo son detectados y notificar dicha información a Abdiel cada cierto tiempo.
- \item 
+ \item ... Voy por aquí.
  \end{enumerate}
  \item{
  \end{itemize}
 \item Lilith
 \item Abdiel
 \item Ezequiel
-\item Anan
+\item Anan % Esto es lo que quiero que haga Antares. 
 \end{itemize}
 
 
