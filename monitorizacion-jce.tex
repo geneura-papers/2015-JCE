@@ -26,7 +26,7 @@
 \title{Arquitectura de bajo coste para monitorización de vehículos y personas usando Bluetooth y WiFi}
 
 \author{%
-     P. García-Sánchez, A. Fernández-Ares, P. A. Castillo, M. I. García Arenas,  P. de las Cuevas, A. M. Mora, G. Romero, J. J. Merelo %
+     P. García-Sánchez, A. Fernández-Ares, P. A. Castillo, M. I. García Arenas,  P. de las Cuevas, A. M. Mora, G. Romero, J. J. Merelo, %
      \thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pablogarcia,antares,pacv,mgarenas,amorag,jmerelo}@ugr.es}}
      P. García-Fernández%
      \thanks{Departamento de Electrónica y Tecnología de  Computadores, Universidad de Granada, e-mail: {\tt pfernan@ditec.ugr.es }}
@@ -40,7 +40,7 @@
 \thispagestyle{empty} % Oculta el n\'umero de la primera p\'agina
 
 \begin{abstract}
-Actualmente existen distintos sistemas de monitorización de vehículos y personas, como las espiras o cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de estos sistemas no permiten una idenfiticación univoca de un mismo vehículo o persona, o de hacerlo, supone una violación de la intimidad. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de los desplazamientos con un procesamiento cercano al tiempo real con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este paper describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas mediante la detección de las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos inteligentes. 
+Actualmente existen distintos sistemas de monitorización de vehículos y personas, como las espiras o cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de estos sistemas no permiten una idenfiticación univoca de un mismo vehículo o persona, o de hacerlo, supone una violación de la intimidad. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de los desplazamientos con un procesamiento cercano al tiempo real con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este artículo describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas mediante la detección de las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos inteligentes. 
 \end{abstract}
 
 \begin{keywords}
@@ -65,8 +65,8 @@ Además, estos sistemas se limitan al control de vehículos sobre vías principales
 dejando de lado tanto la problemática del control de los desplazamientos en vías secundarias o urbanos,
 tanto en vehículos principales, como empleando transportes compartidos o desplazamientos a pie.
 Contar con un sistema de información sobre el movimiento no sólo de vehículos si no de personas y proveer mecanismos
-de predición de dichos movimientos se antoja clave en el contexto actual convergente a las SmartCities.
-Con más de un 90\% de la población que posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
+de predicción de dichos movimientos se antoja clave en el contexto actual convergente a las SmartCities.
+Con un alto porcentaje de la población que posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
 como teléfonos móviles, obtener información sobre la situación y movimiento de dicha población basándose en la
 detección de los dispositivos inteligentes que portan encima significaría poder gestionar de manera optima las
 principales redes de desplazamiento. Tal sistema ayudaría a las políticas urbanísticas y de ordenación territorial
@@ -78,7 +78,7 @@ La aplicación de esta propuesta en el transporte supondría disponer
 de un sistema de información sobre el estado del trafico
 y de predicción del uso de la red viaria por parte de las personas.
 También ayudaría a gestionar de manera óptima una red de
-comunicaciones vital para un procentaje elevado de usuarios.
+comunicaciones vital para un porcentaje elevado de usuarios.
 La primera consecuencia directa sería un aprovechamiento más
 eficiente del uso de los vehículos en los desplazamientos, por lo
 que se podría esperar un menor número de trayectos en vehículo
@@ -123,8 +123,7 @@ posibilite que sea capitalizado por parte de todo tipo de
 agentes en la ciudad.
 \end{itemize}
 
-Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. Una versión anterior de la misma fue presentada en \cite{Castillo13Indicadores}, donde distintos datos de monitorización fueron recolectados y mostrados. Sin embargo,
-ese trabajo no mostraba de forma clara una descripción clara del sistema a desarrollar, salvo una breve descripción del mismo. El presente trabajo lo complementa, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, además de mostrar las nuevas funcionalidades añadidas.
+Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. En \cite{Castillo13Indicadores}, los autores presentaron la idea preliminar así como los resultados obtenidos a partir de unas pruebas preliminares. Este trabajo viene a completar el anterior, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, además de mostrar las nuevas funcionalidades añadidas.
 
 El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección \ref{sec:soa}), la parte hardware y software del sistema es descrita en la Sección \ref{sec:descripcion}. Los resultados de un prototipo experimental se comentan en la Sección \ref{sec:prototipo} y finalmente se presentan las conclusiones y trabajo futuro. 
 
@@ -132,33 +131,33 @@ El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección
 \label{sec:soa}
 
 
-Hoy en día, existen varias tecnologías para la recopilación de datos y posterior extracción de información sobre el estado de las carreteras y monitorización del tráfico. Estos sistemas pueden clasificarse en función de la inmediatez de los datos, de lo completa que sea la cantidad de información obtenida, y del grado de invasión (Martin et al., 2003).
+Hoy en día, existen varias tecnologías para la recopilación de datos y posterior extracción de información sobre el estado de las carreteras y monitorización del tráfico. Estos sistemas pueden clasificarse en función de la inmediatez de los datos, de lo completa que sea la cantidad de información obtenida, y del grado de invasión \cite{martin2003detector}.
 
 Según la inmediatez con la que se obtienen los datos, los sistemas pueden clasificarse como de obtención directa (la fuente obtiene los datos de manera experimental), o indirecta (los datos son el resultado de un posterior procesado algorítmico).
 
 Por otra parte, las tecnologías de monitorización actuales pueden considerarse invasivas si éstas están instaladas en el pavimento de la carreteras, no invasivas cuando los sistemas no tienen contacto con la carretera y tienen mínimo o nulo efecto sobre el flujo de tráfico, o bien son tecnologías de monitorización a través de vehículos flotantes.
 
-Así los principales métodos de monitoración del tráfico se basan en el uso de tubos neumáticos, espiras o vehículos flotantes. La principal desventaja de estos sistemas es que no capaces de identificar de forma única los vehículos detectados, con el fin de trazar matrices origen/destino. Además se centran sólo en la detección de vehículos, ignorando aspectos como el número de ocupantes por vehículo u los desplazamientos a pie.
+Así los principales métodos de monitorización del tráfico se basan en el uso de tubos neumáticos, espiras o vehículos flotantes \cite{rodrigue2013geography}.  La principal desventaja de estos sistemas es que no capaces de identificar de forma única los vehículos detectados, con el fin de trazar matrices origen/destino. Además se centran sólo en la detección de vehículos, ignorando aspectos como el número de ocupantes por vehículo u los desplazamientos a pie.
 
-En los últimos años, las tecnologías que facilitan el reconocimiento automático de vehículos se han visto fortalecidos debido a que si son capaces de detectar vehículos de manera unívoca. Es el caso de la detección a través de las imágenes de vídeo, mediante OCR de las mátriculas. Sin embargo la agencia de Protección de Datos española especifica que los sistemas que obtengan datos de tipo personal (como son las matrículas) requieren de consentimiento expreso por parte del usuario.
+En los últimos años, las tecnologías que facilitan el reconocimiento automático de vehículos se han visto fortalecidos debido a que si son capaces de detectar vehículos de manera unívoca. Es el caso de la detección a través de las imágenes de vídeo, mediante OCR de las matriculas. Sin embargo la agencia de Protección de Datos española especifica que los sistemas que obtengan datos de tipo personal (como son las matrículas) requieren de consentimiento expreso por parte del usuario.
 
 
-Además estos sistemas son muy costosos tanto en implantación como en mantenimiento por lo que su colocación en carretras secundarias y vías urbanas resulta económicamente inviable, por lo únicamente son empleados en las carreteras primarias.
+Además estos sistemas son muy costosos tanto en implantación como en mantenimiento por lo que su colocación en carreteras secundarias y vías urbanas resulta económicamente inviable, por lo únicamente son empleados en las carreteras primarias \cite{sherry2001report}.
 
 El empleo de dispositivos de bajo coste como el propuesto, monitorizando las señales Wifi y Bluetooth de los dispositivos inteligentes permite superar las limitaciones de los anteriores sistemas. Se identifica de forma única a cada dispositivo pero sin vulnerar la ley de protección de datos, dado que no existe un registro ni forma de vincular un dispositivo con su usuario o dueño. Su bajo coste permite su despliegue en zonas que de otra manera no estarían siendo monitorizadas.
 
-Existen sistemas que han utilizado routers WiFi para posicionaminto. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots wifi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
+Existen sistemas que han utilizado routers WiFi para posicionamiento. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots WiFi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
 
-En \cite{Castillo13Indicadores} se presentó una versión preliminar del sistema descrito en este trabajo. En ese trabajo se mostraron unos prototipos de monitorización basados en arquiectura microPC, junto con algunos datos de monitorización. Sin embargo, ese trabajo no explicaba el proceso de captación de datos ni describía la arquitectura software y hardware del sistema (que además, estaba en un versión anterior a la presentada aquí). El presente trabajo, por lo tanto, permitirá a nuevos investigadores desarrollar su propio sistema de monitorización teniendo en cuenta las decisiones de diseño tomadas para esta nueva versión. 
+En \cite{GarciaFernandezMonitorizacion,Castillo14Individualized} se presentó una versión preliminar del sistema descrito en este trabajo. En ese trabajo se mostraron unos prototipos de monitorización basados en arquitectura microPC, junto con algunos datos de monitorización de vehículos usando Bluetooth. Sin embargo, ese trabajo no explicaba el proceso de captación de datos ni describía la arquitectura software y hardware del sistema (que además, estaba en un versión anterior a la presentada aquí) ni se usó para detectar personas usando WiFi. El presente trabajo, por lo tanto, permitirá a nuevos investigadores desarrollar su propio sistema de monitorización teniendo en cuenta las decisiones de diseño tomadas para esta nueva versión. 
 
 
 
 \section{Descripción del sistema}
 \label{sec:descripcion}
 
-El sistema se describe en este artículo tanto por su elementos hardware (el dispositivo físico de captación y servidores) como por los elementos software que nutren el sistema (software de captación, procesamiento, predición y difusión). Así no puede entenderse el sistema como un elemento aislado y atómico, sino como un entramado de elementos tanto hardware como software comunicánose entre ellos como se observa en la figura \ref{fig:sistema}. 
+El sistema se describe en este artículo tanto por sus elementos hardware (el dispositivo físico de captación y servidores) como por los elementos software que nutren el sistema (software de captación, procesamiento, predicción y difusión). Así pues, no puede entenderse el sistema como un elemento aislado y atómico, sino como un entramado de elementos tanto hardware como software comunicándose entre ellos como se observa en la figura \ref{fig:sistema}. 
 
-\begin{figure*}[ht] 
+\begin{figure*}[htb] 
 \begin{center} 
 \includegraphics[scale=0.35]{imags/DiagramaSoftware.pdf}
 %\epsfig{file=imags/DiagramaSoftware.eps,width=7cm}
@@ -168,7 +167,7 @@ El sistema se describe en este artículo tanto por su elementos hardware (el disp
 \end{figure*}
 
 
-\subsubsection{Dispositivos de monitorización}
+\subsection{Descripción de los dispositivos de monitorización}
 
 El dispositivo de monitorización está basado en Raspberry Pi, en concreto el sistema funcional presentado
 en este artículo hace uso de Raspberry Pi Model A (Figura \ref{fig:raspberry}), aunque se está actualizando el sistema operativo y software para hacerlo funcionar sobre Raspberry Pi 2 Model B, pues su mayor capacidad de cómputo paralelo puede suponer una optimización significativa del funcionamiento del dispositivo de captación. Sin embargo, el cambio de arquitectura sufrido entre los modelos, hace que sea necesario un estudio concienzudo de la migración.
@@ -184,9 +183,9 @@ Además de la Raspberry Pi que hace de centro de procesamiento, son necesarios ot
 La elección de la tarjeta de red no es trivial, pues ha de cumplir varios requisitos. Es necesario que sea compatible
 con el sistema operativo elegido, que sea capaz de operar en modo monitor lo que permita la captura promiscua de paquetes (conocido como sniffering). Además según el emplazamiento del dispositivo, puede ser requerida una antena con características especiales (omnidireccional o direccional, mayor o menor ganancia, integrada en el dispositivo o alejada varios metros) por lo que disponer de un sistema estándar de antena es un requerimiento añadido. La tarjeta elegida es una \textit{TP-Link TL-WN722N} que dispone de interfaz USB de conexión y conexión RP-SMA para la antena.
 
-La tarjeta bluetooth elegida es una \textit{Conceptronic CBT40 NANO} debido a ser de las más comunes en el mercado compatibles con Bluetooth 4.0 y ser de Clase 1. Su interfaz de conexión es USB, pero lamentablemente la antena se haya integrada dentro del chipset por lo que no es posible de forma estándar cambiarla.
+La tarjeta Bluetooth elegida es una \textit{Conceptronic CBT40 NANO} debido a ser de las más comunes en el mercado compatibles con Bluetooth 4.0 y ser de Clase 1. Su interfaz de conexión es USB, pero lamentablemente la antena se haya integrada dentro del chipset por lo que no es posible de forma estándar cambiarla.
 
-La caja estánca empleada cumple las certificaciones IP67 de protección frente a polvo y humedad y Clase II de aislamiento eléctrico. 
+La caja estanca empleada cumple las certificaciones IP67 de protección frente a polvo y humedad y Clase II de aislamiento eléctrico. 
 
 \begin{figure*}[htb] 
 \centering
@@ -197,10 +196,14 @@ La caja estánca empleada cumple las certificaciones IP67 de protección frente a 
 \label{fig:raspberry} 
 \end{figure*}
 
-\subsection{HOREB: Sistema Operativo}
+\subsection{Descripción de los elementos del sistema a nivel software}
+
+Como se puede apreciar en la Figura \ref{fig:sistema}, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, Raziel, Lilith, Abdiel, Ezequiel y Anan que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith implementados en Java y en PHP respectivamente y ambas corren sobre el sistema operativo Horeb. Ambas partes de forma independiente envían datos a Abdiel, también implemenado en PHP, que es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. A continuación se describen estos elementos, junto con las consideraciones tomadas a la hora de diseñarlos.
+
+\subsubsection{Horeb: Sistema Operativo}
 Las Raspberry Pi Model A empleadas hace uso de un procesador ARM6 \footnote{En las nuevas Raspberry Pi 2, el procesador es cambiado por un ARM7 lo que permite elegir una mayor cantidad de Sistemas Operativos compatibles con la arquitectura} por lo cual es necesario instalar un sistema operativo que sea compatible con la arquitectura del procesador. En este caso el Sistema Operativo elegido es Raspbian, distribución basada en Debian enfocada en la compatibilidad con Raspberry Pi. Hace uso de la versión 3.10.24+ del kernel de Linux y nos permite disponer de un sistema Linux completo en un sistema de placa única como es Raspberry.
 
-Las ventajas de emplear un sistema operativo completo son numerosas: administración remota, sistema de logs y cron nativos, repositorios de sofware,...
+Las ventajas de emplear un sistema operativo completo son numerosas: administración remota, sistema de logs y cron nativos, repositorios de software,...
 
 Sin embargo es necesario realizar algunas modificaciones al SO para optimizarlo al problema de captación que nos ocupamos. El almacenamiento sólido de las Raspberry Pi está basado en tarjetas SD (o microSD en Model B y adelante). Sin bien las velocidades alcanzables por tarjetas Clase 10 es más que suficiente para correr un sistema operativo, existe un problema documentado de corrupción de las tarjetas SD ante fallos eléctricos tales como perdida de alimentación o subidas de tensión.
 
@@ -208,11 +211,11 @@ Siendo dispositivos como los presentados en este artículo que van a ser ubicados
 
 Es por ello que se ha modificado el sistema operativo de modo que funcione como un Sistema Operativo de Solo Lectura. De esta forma, se minimizan las escrituras en el medio y se garantiza que en todos los arranques del dispositivo va a disponer de una versión estable no corrupta de los archivos necesarios para su inicio.
 
-Sin embargo, un sistema operativo Linux requiere de numerosos directorios donde poder escribir para el funcionamiento del mismo. Esto se resuelve con particiones \textit{tmpfs} montado en memoria volátil. Esto aporta numerosas ventajas, ya que al ser mucho más rápida la memoria volátil que la solida las operaciones son generalmente mucho más rápidas. Sin embargo, al ser memoria volátil, los datos no persisten después de los reinicios del sistema. Además, al estar alojada en la memoria RAM de la Raspberry Pi, se pierde capacidad máxima de propósito general. Se sacrifica por tanto al almacenamiento a lo largo del tiempo y parte de la memoria RAM con el fin de conseguir un sistema operativo más tolerable a fallos, corrupciones de datos y eficiencia en general. Las particiones de HOREB son mostradas en la Figura \ref{fig:horeb-particiones}.
+Sin embargo, un sistema operativo Linux requiere de numerosos directorios donde poder escribir para el funcionamiento del mismo. Esto se resuelve con particiones \textit{tmpfs} montado en memoria volátil. Esto aporta numerosas ventajas, ya que al ser mucho más rápida la memoria volátil que la solida las operaciones son generalmente mucho más rápidas. Sin embargo, al ser memoria volátil, los datos no persisten después de los reinicios del sistema. Además, al estar alojada en la memoria RAM de la Raspberry Pi, se pierde capacidad máxima de propósito general. Se sacrifica por tanto al almacenamiento a lo largo del tiempo y parte de la memoria RAM con el fin de conseguir un sistema operativo más tolerable a fallos, corrupciones de datos y eficiencia en general. Las particiones de Horeb son mostradas en la Figura \ref{fig:horeb-particiones}.
 
 Además debido al uso intensivo del hardware USB (las tarjetas Wifi y Bluetooth), es necesario indicarle al Sistema Operativo que no puede suspender los dispositivos USB para ahorrar energía. Esta medida que en Sistemas Operativos de propósito general es muy útil y supone un ahorro en el consumo bastante significativo, en nuestra sistema supone la perdida de datos de captación en los momentos en los que la tarjeta está suspendida. Esto se consigue con la opción \textit{usbcore.autosuspend=-1} en el módulo USBCORE del kernel.
 
-\begin{figure*}[ht]
+\begin{figure*}[htb]
 \begin{lstlisting}
 pi@raspberrypi ~ $ df
 Filesystem     1K-blocks    Used Available Use% Mounted on
@@ -227,29 +230,29 @@ tmpfs              89620       0     89620   0% /run/shm
 tmpfs              15360     100     15260   1% /tmp
 tmpfs              15360    6516      8844  43% /var/log
 \end{lstlisting}
-\caption{Particiones del Sistema HOREB}
+\caption{Particiones del Sistema Horeb}
 \label{fig:horeb-particiones}
 \end{figure*}
 
 Debido a que las Raspberry Pi no incorporan una pila para el reloj interno, es necesario solicitar la fecha y hora mediante un servidor NTP con el fin de garantizar la correcta sincronización de cada dispositivo de captación.
 
-Se incorporan también las librerías necesarias para la ejecución del software, siendo destacadas las librerías JDK de Java, JSR para el bluetooth, aircraft para la captura Wifi o Sakis3G para las comunicaciones mediante 3G.
+Se incorporan también las librerías necesarias para la ejecución del software, siendo destacadas las librerías JDK de Java, JSR para el Bluetooth, {\em aircraft} para la captura Wifi o {\em Sakis3G} para las comunicaciones mediante 3G.
 
-Por último, es sistema operativo incorpora el Software \textit{RAZIEL} como servicio a ser ejecutado tras el arranque del sistema de forma automática.
+Por último, es sistema operativo incorpora el Software \textit{Raziel} como servicio a ser ejecutado tras el arranque del sistema de forma automática.
 
-\subsection{RAZIEL: Software de Captación}
+\subsubsection{Raziel: Software de Captación}
 
-Raziel es el software integrado como demonio del sistema encargado de la detección de pasos de personas mediante la captura de paquetes Wifi y localización de dispositivos Bluetooth cercanos. Estas capturas son procesadas como pasos de un dispositivo y son enviadas al servidor ABDIEL periódicamente.
+Raziel es el software integrado como demonio del sistema encargado de la detección de pasos de personas mediante la captura de paquetes Wifi y localización de dispositivos Bluetooth cercanos. Estas capturas son procesadas como pasos de un dispositivo y son enviadas al servidor Abdiel periódicamente.
 
-Este software está desarrollado en JAVA siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model A empleada en los prototipos descritos dispone de una única unidad de procesamiento, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
+Este software está desarrollado en Java siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model A empleada en los prototipos descritos dispone de una única unidad de procesamiento, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
 
 Se ha implementado de forma modular cada una de las funcionalidades del software de forma que operen de manera autónoma, comunicándose las distintas hebras y subsistemas mediante memoria compartida.
 
 Entre las tareas del software se encuentran las tareas de mantenimiento del mismo. Debido a que es posible que el sistema no disponga de administración remota dependiendo de la infraestructura de red donde sea colocado, el software tiene que ser el encargado de realizar el mantenimiento de si mismo.
 
-Dependiendo de la red, el software es capaz de establecer mecanismos para la conexión con el exterior mediante ethernet, Wifi o 3G. En el caso de la conexión Wifi, la misma tarjeta de red es empleada tanto para la captura de paquetes para establecer la conexión. Esto es posible gracias a la virtualización de dos interfaces de red al mismo tiempo.
+Dependiendo de la red, el software es capaz de establecer mecanismos para la conexión con el exterior mediante Ethernet, Wifi o 3G. En el caso de la conexión Wifi, la misma tarjeta de red es empleada tanto para la captura de paquetes para establecer la conexión. Esto es posible gracias a la virtualización de dos interfaces de red al mismo tiempo.
 
-Cada sistema de captación (bluetooth y wifi) tiene un funcionamiento similar compuesto de tres elementos:
+Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar compuesto de tres elementos:
 
 \begin{itemize}
 \item Hebra de control
@@ -260,80 +263,52 @@ Cada sistema de captación (bluetooth y wifi) tiene un funcionamiento similar com
 
 La hebra de control es la encargada de iniciar las interfaces y comunicaciones con el dispositivo físico, así como estar a la escucha de las peticiones del sistema, como por ejemplo, para detenerse.
 
-El escaneador es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete wifiRaw o la detección de dispositivos bluetooth. Realiza la interpretación de los octetos conseguidos por la interfaz de red. Si el octeto es válido y es posible interpretarlo se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la mac del dispositivo que ha realizado el envío, así como el fabricante gracias a que los primeros 24 bits de la mac son otorgados por el IEEE. 
+El escaneador es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete wifiRaw o la detección de dispositivos Bluetooth. Realiza la interpretación de los octetos conseguidos por la interfaz de red. Si el octeto es válido y es posible interpretarlo se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE. 
 
-En Wifi esta información se optiene gracias al protocolo radiotap, que permite conseguir información de la propia tarjeta sobre el paquete capturado. De esta forma se consigue la intensidad de la señal con la que ha sido capturado el paquete y la cabecera 802.11 que incluye las MACs. En ningún momento, se procesa ni accede a los octetos capturados pertenecientes a la cuerpo de la trama.
+En Wifi esta información se obtiene gracias al protocolo {\em radiotap}, que permite conseguir información de la propia tarjeta sobre el paquete capturado. De esta forma se consigue la intensidad de la señal con la que ha sido capturado el paquete y la cabecera 802.11 que incluye las MACs. En ningún momento, se procesa ni accede a los octetos capturados pertenecientes a la cuerpo de la trama.
 
-En Bluetooth, se obedece al evento de dispositivo visible. Actualmente solo podemos detectar dispositivos que se encuentran visibles de forma pública. Sin embargo, gracias al protocolo bluetooth podemos saber que tipo de dispositivo es el que hemos detectado gracias a los bits de tipo de dispositivo y servicios ofrecidos.
+En Bluetooth, se obedece al evento de dispositivo visible. Actualmente solo podemos detectar dispositivos que se encuentran visibles de forma pública. Sin embargo, gracias al protocolo Bluetooth podemos saber que tipo de dispositivo es el que hemos detectado gracias a los bits de tipo de dispositivo y servicios ofrecidos.
 
-El monitor está pendiente de la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del dispositivo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurridos un tiempo prudencial. Los dispositivos que no han sido localizados es dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempos que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales primera y última y un hash de la mac de dicho dispositivo.
+El monitor está pendiente de la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del dispositivo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurridos un tiempo prudencial. Los dispositivos que no han sido localizados es dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempos que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales primera y última y un hash de la MAC de dicho dispositivo.
 
 El difusor, periódicamente manda al servidor mediante una petición REST los datos comprimidos de los pasos de los dispositivos.
 
-\subsection{LILITH: Pasarela de red}
+\subsubsection{Lilith: Pasarela de red}
 
-Dado que el sistema puede ser implantado en un sistema de red complejo como puede ser el perteneciente a un organismo público, nos vemos en la problemática de comunicar nuestros dispositivos con nuestro servidor de forma que no suponga una vulnerabilidad en la red o en redes que no dispongan de salida a internet ya que sean de ámbito local.
+Dado que el sistema puede ser implantado en un sistema de red complejo como puede ser el perteneciente a un organismo público, nos vemos en la problemática de comunicar nuestros dispositivos con nuestro servidor de forma que no suponga una vulnerabilidad en la red o en redes que no dispongan de salida a Internet ya que sean de ámbito local.
 
-Para ello se puede habilitar una Raspberry Pi corriendo HOREB como sistema operativo, y haciendo uso del sistema LILITH para hacer la redirección del tráfico entre las otras Raspberry y el Servidor.
+Para ello se puede habilitar una Raspberry Pi corriendo Horeb como sistema operativo, y haciendo uso del sistema Lilith para hacer la redirección del tráfico entre las otras Raspberry y el Servidor.
 
 De esta forma Lilith sirve como pasarela de red entre las dos redes, la local y la red global que comunica al servidor.
 
-\subsection{ABDIEL: El servidor de entrada de datos}
+\subsubsection{Abdiel: El servidor de entrada de datos}
 
-ABDIEL es el software que provee los servicios de la API REST de comunicación empleados por RAZIEL. Está desarrollado en PHP haciendo especial cuidado en la atomicidad de las operaciones.
+Abdiel es el software que provee los servicios de la API REST de comunicación empleados por Raziel. Está desarrollado en PHP haciendo especial cuidado en la atomicidad de las operaciones.
 
-Entre otros servicios, proporciona la conexión y desconexión al sistema de los software de captación, el sistema de privilegios, el servicio de actualización del software y la incoporación de pasos de dispositivos al sistema.
+Entre otros servicios, proporciona la conexión y desconexión al sistema de los software de captación, el sistema de privilegios, el servicio de actualización del software y la incorporación de pasos de dispositivos al sistema.
 
-El servicio encargado de almacenar los pasos, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos ALEJANDRÍA.
+El servicio encargado de almacenar los pasos, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos Alejandría.
 
-\subsection{ALEJANDRÍA: Base de datos local}
+\subsubsection{Alejandría: Base de datos local}
 
-ALEJANDRÍA es la base de datos donde son almacenados la información de los pasos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas, e índices que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
+Alejandría es la base de datos donde son almacenados la información de los pasos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas, e índices que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
 
 Dispone de procedimientos optimizados para el cálculo del número total de dispositivos en ventanas temporales para los dispositivos de captación, así como para el cálculo de re-ocurrencia de dispositivos en distintos nodos.
 
-Estos procedimientos son invocados por el software EZEQUIEL para sumarizar los datos y publicarlos en la nube.
+Estos procedimientos son invocados por el software Ezequiel para recolectar los datos y publicarlos en la nube.
 
-\subsection{EZEQUIEL: Publicación en la nube}
+\subsubsection{Ezequiel: Publicación en la nube}
 
-Ezequel es el software encargado del acceso a la base datos, conseguir resúmenes de los datos, aplicar los algoritmos de predicción y minería de datos y difundir los resultados en la nube ANAN.
+Ezequiel es el software encargado del acceso a la base datos, conseguir resúmenes de los datos, aplicar los algoritmos de predicción y minería de datos y difundir los resultados en la nube Anan.
 
-\subsection{ANAN: La nube}
+\subsubsection{Anan: La nube}
 
 Anan es el nombre otorgado a la nube basada en la tecnología de Google en la que se almacenan los datos con el fin de darle difusión a los mismos. En Anan los datos son almacenados en tablas BigTable NoSQL mediante la tecnología de Google Fusion Tables. Esta tecnología provee una base de datos geolocalizada, siendo la empleada en otras tecnologías de Google como Google Maps.
 
-Anan se encarga también de proveer gráficas interactivas y mapas del estado historico, actual y predicho de los distintos nodos.
+Anan se encarga también de proveer gráficas interactivas y mapas del estado histórico, actual y predicho de los distintos nodos.
 
 
-El software que soporta el sistema, está formado por varios módulos independientes, que se relacionan entre ellos según la figura \ref{fig:sistema}. 
 
-\begin{figure*}[ht] 
-\begin{center} 
-\includegraphics[scale=0.35]{imags/DiagramaSoftware.pdf}
-%\epsfig{file=imags/DiagramaSoftware.eps,width=7cm}
-\end{center} 
-\caption{Descripción del sistema.} 
-\label{fig:sistema} 
-\end{figure*}
-
-Como se puede apreciar en el sistema, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, Raziel, Lilith, Abdiel, Ezequiel y Anan que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith implementados en Java y en PHP respectivamente y ambas corren sobre el sistema operativo Horeb. Ambas partes de forma independiente envían datos a Abdiel, también implemenado en PHP, que es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. De las consultas a la base de datos Alejandría se ocupa Ezequiel, también implementado en PHP. Tanto Ezequiel, como Abdiel se ejecutan de forma simultánea en el servidor donde está almacenada la base de datos. Este servidor tiene un sistema operativo Linux. Por último Anan  .....
-
-% Antares amplía aquí un poco sobre Anan, lenguaje y relación con las demás partes, la función o la descripción de lo que hace, está en el itemize del siguiente párrafo.
-
-En el párrafo anterior hemos descrito un la relación entre las partes y los diferentes sistemas operativos y lenguajes que hemos utilizado. A continuación detallaremos un poco la función de cada una de las partes, intentando no entrar en muchos detalles, puesto que no disponemos del suficiente espacio.
-\begin{itemize}
-\item Raziel: La función de Raziel es la captación de dispositivos. Esta captación se hace escaneando el entorno donde está situado y captando paquetes BT o Wifi que emiten los dispositivos cuando intentan descubrir otros dispositivos BT o un punto de acceso Wifi a los que conectarse. Los pasos que sigue Raziel a grandes rasgos son:
- \begin{enumerate}
- \item Comprobación de que la conexión a red para conectar con Abdiel está disponible, ya sea de forma inalámbrica o alámbrica.
- \item Inicializa la hebra de captación BT que se ejecutará durante todo el tiempo que Raziel esté ejecutándose. Esta hebra se encarga de detectar nuevos dispositivos BT, monitorizarlos registrando durante cuanto tiempo son detectados y notificar dicha información a Abdiel cada cierto tiempo.
- \item ... Voy por aquí.
- \end{enumerate}
-
-\item Lilith
-\item Abdiel
-\item Ezequiel
-\item Anan % Esto es lo que quiero que haga Antares. 
-\end{itemize}
 
 
 
@@ -344,7 +319,7 @@ En el párrafo anterior hemos descrito un la relación entre las partes y los dife
 \section{Conclusiones y trabajo futuro}
 \label{sec:conclusiones}
 
-Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización, de bajo coste, autónomos y que permitan la detección univoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de los dispositivos Bluetooth y WiFi de los agentes a medir, permitiendo su identificación de forma univoca y anónima. Los elementos software y hardware han sido descritos, junto con los datos de un prototipo funcional.
+Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización, de bajo coste, autónomos y que permitan la detección univoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de los dispositivos Bluetooth y WiFi de los agentes a medir, permitiendo su identificación de forma univoca y anónima. Se ha descrito en detalle el hardware a utilizar, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación y pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local) así como el servicio de publicación de datos en la nube.
 
 Como trabajo futuro se está planteando utilizar el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá añadir nuevos dispositivos de captación (GSM, luminosidad, temperatura, etc.). Además, distintos algoritmos de predicción, y combinación con otras fuentes de datos serán añadidos al servidor de procesamiento.
 
