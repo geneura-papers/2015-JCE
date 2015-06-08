@@ -45,8 +45,9 @@ Actualmente existen distintos sistemas de monitorización de tráfico de vehículos
 % Antonio - hay un nombre más 'tecnico' para las espiras'? FERGU: que yo sepa no xD
 o las cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de ellos no permiten una identificación unívoca de un mismo vehículo o persona, o, de hacerlo, esto podría suponer una violación de la privacidad de dicha persona. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de los desplazamientos, con un procesamiento cercano al tiempo real 
 % Antonio - porcesamiento de qué? no se ha justificado por qué hace falta que sea en tiempo real. ;)
-con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este artículo describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas detectados mediante mecanismos que supervisan las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos móviles. 
+con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este artículo describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas detectados mediante mecanismos que supervisan las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos. 
 % Antonio - esto queda muy cool, pero yo no lo pondría así. Yo pondría 'dispositivos móviles' o 'portables'
+% Antares - ¿Mejor así?
 \end{abstract}
 
 \begin{keywords}
@@ -75,8 +76,9 @@ tanto en vehículos principales, como empleando transportes compartidos (públicos
 Contar con un sistema de información sobre el movimiento no sólo de vehículos sino de personas y proveer mecanismos de predicción de dichos movimientos se antoja clave en el contexto actual convergente a las \textit{Smart Cities}.
 Con un alto porcentaje de la población que posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
 como teléfonos móviles, obtener información sobre la situación y movimiento de dichos individuos basándose en la
-detección de estos dispositivos inteligentes 
+detección de estos dispositivos 
 % Antonio - lo de inteligentes nunca me ha gustado...yo lo quitaría
+% Antares - Ale, ahora son tontos :P
 que portan encima significaría poder gestionar de manera óptima las
 principales redes de desplazamiento. 
 Dicho sistema ayudaría a las políticas urbanísticas y de ordenación territorial
@@ -121,9 +123,10 @@ aprendizaje automático
 como servicios web en el sistema.
 % Antonio - esto habría que justificarlo un poco. ;)
 
-Por tanto, 
+
 % Antonio - el 'por tanto' no cuadra aquí.
-encontramos que se tienen varias necesidades desde
+% Antares - pues le metemos tijera :P
+Encontramos que se tienen varias necesidades desde
 el punto de vista de la gestión del transporte:
 \begin{itemize}
 \item Se necesitará un dispositivo autónomo y versátil de recogida
@@ -145,9 +148,12 @@ agentes en la ciudad.
 % Antonio - esta frase  ('capitalizado...ciudad') queda muy formal, supongo que la habréis sacado de alguna reunión con jefazos de tráfico o algo... :D
 \end{itemize}
 
-Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura hardware y software presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. En \cite{Castillo13Indicadores}, los autores presentaron la idea preliminar así como los resultados obtenidos a partir de unas pruebas preliminares. Este trabajo viene a completar el anterior, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, 
+Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura hardware y software presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. En \cite{Castillo13Indicadores}, los autores presentaron la idea así como los resultados obtenidos a partir de unas pruebas preliminares. Este trabajo viene a completar el anterior, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, 
 % Antonio - esto de los investigadores lo quitaría. :P
+% Antares - quito un preliminar
 además de mostrar las nuevas funcionalidades añadidas.
+
+
 
 
 % Antonio - hacer más hincapié en lo que se presenta aquí: la arquitectura detallada del sistema a nivel hardware y software, no lo del tráfico en sí. ;D
@@ -180,9 +186,10 @@ El empleo de dispositivos de bajo coste como el propuesto, que monitoriza las se
 % Antonio - no todas (por ejemplo lo de los ocupantes)
 Se identifica de forma única a cada dispositivo pero sin vulnerar la ley de protección de datos, dado que no existe un registro 
 % Antonio - si existe un registro. ;D
+% No existe ningún registro de la "mac" del dispositivo con su usuario. No es la tarjeta SIM de la que hablamos, sino de la MAC del dispositivo físico.
 ni forma de vincular un dispositivo con su usuario o dueño; además, su bajo coste permite su despliegue en zonas consideradas como secundarias, que de otra manera no serían monitorizadas.
 
-Existen sistemas que han utilizado routers WiFi para posicionamiento. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots WiFi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. 
+Existen sistemas que han utilizado routers WiFi para posicionamiento. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots WiFi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como referencia. 
 % Antonio - 'base' => 'referencia'?
 Sin embargo, es el dispositivo móvil el que permite conocer la localización de la persona, lo que obliga a instalar una aplicación para detectar usuarios. Además, cambios en la infraestructura de los hotspots implicaría volver a recalcular la base de datos de intensidades.
 % Antonio - sería una base de datos o una tabla?
@@ -229,17 +236,20 @@ La elección de la tarjeta de red no es trivial, pues ha de cumplir varios requis
 % Antonio - link a la web de producto. ;)
 que dispone de interfaz USB de conexión y conexión RP-SMA 
 % Antonio - qué es RP-SMA?
+% Antares - la conexión estándar de los cables coaxiales.
 para la antena.
 
 La tarjeta Bluetooth elegida es una \textit{Conceptronic CBT40 NANO} 
 % Antonio - link
 ya que es una de las más comunes en el mercado compatibles con Bluetooth 4.0 y de Clase 1. 
-% Antonio - qué significa de Clase 1?
-Su interfaz de conexión es USB, pero lamentablemente la antena está integrada dentro del chipset por lo que no es posible cambiarla de forma estándar.
+% Antonio - qué significa de Clase 1
+% El alcance de la comunicación viene determinado por su clase. Clase 1 es la de mayor alcance y se reserva para comunicaciones hasta 100 metros. Clase 2 es la empleada por dispositivos móviles comunes. Clase 3 se reserva a periféricos y werabl.es.
+Su interfaz de conexión es USB, pero lamentablemente la antena está integrada dentro del chipset por lo que no es posible cambiarla de forma estándar. Sin embargo, el alcance teórico alcance los 100 metros, con uno efectivo de 25-30 metros, lo cual es un radio de acción más que suficiente para el propósito.
 % Antonio - y eso afecta al sistema? decirlo si afecta o si no. ;D
 
 La caja estanca empleada para albergar el dispositivo de monitorización cumple las certificaciones IP67 de protección frente a polvo y humedad y Clase II de aislamiento eléctrico. 
 % Antonio - enlaces y/o explicaciones. ;)
+% Antares - Son certificaciones estándares, igual habría que ponerlo pero sacado del organismo oficial :S
 
 \begin{figure*}[htb] 
 \centering
@@ -255,11 +265,13 @@ La caja estanca empleada para albergar el dispositivo de monitorización cumple l
 \subsection{Descripción de los elementos del sistema a nivel software}
 
 Como se puede apreciar en la Figura \ref{fig:sistema}, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, \textit{Raziel, Lilith, Abdiel, Ezequiel} y \textit{Anan}, 
-% Antonio - yo veo demasiados nombres, usaría uno sólo para el sistema y yastá. Pero bueno, si a Antares le gusta...
+% Antonio - yo veo demasiados nombres, usaría uno sólo para el sistema y yastá. Pero bueno, si a Antares le gusta
+% Antares - aa Antares le gusta ponerle nombre a todo xD
 que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith, que están implementados en Java y en PHP respectivamente. Ambas se ejecutan sobre el sistema operativo, llamado Horeb en este sistema. 
 % Antonio - ¿lo cualo? ¿qué S.O. es ese? FERGU: cambiado
-Ambas partes envían datos a Abdiel de forma independiente. Éste también está  implementado en PHP, y es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. 
+Ambas partes envían datos a Abdiel de forma independiente. Éste también está  implementado en PHP, y es el único que tiene acceso de escritura en la base de datos Alejandría gestionada por MySQL. 
 % Antonio - otros dos nombres... :_(
+% Antares - cambio lo de que no tiene acceso, porque es el único que solo tiene acceso de ESCRITURA :P
 A continuación se describen estos elementos, junto con las consideraciones tomadas a la hora de diseñarlos.
 
 \subsubsection{Horeb: Sistema Operativo}
@@ -270,10 +282,12 @@ Las ventajas de emplear un sistema operativo completo son numerosas: administrac
 
 Sin embargo es necesario realizar algunas modificaciones al SO para optimizarlo al problema de captación que nos ocupa: El almacenamiento físico de las Raspberry Pi está basado en tarjetas SD (microSD en Model B+ o superiores). Si bien las velocidades que alcanzan las tarjetas de Clase 10 es más que suficiente para que funcione un sistema operativo, existe un problema documentado de corrupción 
 % Antonio - corrompimiento? No sé si corrupción aplica bien aquí. :/
+% Antares - no lo sé, no me suena bien xD
 de las tarjetas SD ante fallos eléctricos tales como perdida de alimentación o subidas de tensión.
 
 Siendo dispositivos como los presentados en este artículo que van a ser ubicados en zonas de complicado acceso frecuente, tener un sistema operativo 
 % Antonio - bueno, no es el SO, es el sistema de almacenamiento lo que es vulnerable, ¿no?
+% Antares - todo el sistema operativo se prepara para poder funcionar sin hacer escrituras en disco. Se puede entender de que el sistema de archivos no es el sistema operativo, pero creo que queda más claro así.
 tan vulnerable a fallos (corrupciones) supone un problema.
 
 Es por ello que se ha modificado el SO de modo que funcione como un Sistema Operativo de Solo Lectura. 
@@ -282,13 +296,17 @@ De esta forma, se minimizan las escrituras en el medio y se garantiza que, en to
 
 Sin embargo, un sistema operativo Linux requiere de numerosos directorios donde poder escribir para el correcto funcionamiento del mismo. Esto se resuelve con particiones \textit{tmpfs} montadas en memoria volátil. 
 % Antonio - explicación de tmpfs...
-Lo cual aporta numerosas ventajas, ya que, al ser mucho más rápida la memoria volátil que la física, las operaciones son generalmente mucho más rápidas. Sin embargo, al ser memoria volátil, los datos no persisten después de los reinicios del sistema. Además, al estar alojada en la memoria RAM de la Raspberry Pi, se pierde capacidad máxima de propósito general. 
+% Antares - es todo un mundo xD
+Lo cual aporta numerosas ventajas, ya que, al ser mucho más rápida la memoria volátil que la física, las operaciones son generalmente mucho más rápidas. Sin embargo, al ser memoria volátil, los datos no persisten después de los reinicios del sistema. Además, al estar alojada en la memoria RAM de la Raspberry Pi, se pierde capacidad máxima de dicha memoria. 
 % Antonio - 'capacidad máxima de propósito general'???
+% Antares - Modificado
+
 Se sacrifica por tanto al almacenamiento a lo largo del tiempo y parte de la memoria RAM con el fin de conseguir un sistema operativo más robusto ante fallos, corrupciones de datos y más eficiente en general. Las particiones de Horeb son mostradas en la Figura \ref{fig:horeb-particiones}.
 
 Además, debido al uso intensivo del hardware USB (las tarjetas Wifi y Bluetooth), es necesario indicarle al SO que no puede suspender los dispositivos USB para ahorrar energía. Esta medida que en Sistemas Operativos de propósito general es muy útil y supone un ahorro en el consumo bastante significativo, en nuestro sistema supondría la perdida de captación de datos en los momentos en los que la tarjeta estuviese suspendida. Esto se consigue con la opción
 % Antonio - haciendo quñe con la opción? Es decir, cambiándola de '1' a '-1' o qué?
- \textit{usbcore.autosuspend=-1} en el módulo USBCORE del kernel del SO.
+% Antares - xD
+ \textit{usbcore.autosuspend=-1} en el módulo USBCORE del kernel del SO que indica que puede que no puede suspender los dispositivos USB. Normalmente la opción incorpora un intervalo de tiempo que indica cuando tiene que estar sin uso un dispositivo para considerarlo para la suspensión.
 
 \begin{figure*}[htb]
 \begin{lstlisting}
@@ -341,10 +359,12 @@ Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar com
 
 La \textbf{hebra de control} es la encargada de iniciar las interfaces y comunicaciones con el dispositivo físico, así como estar a la escucha de las peticiones del sistema, como por ejemplo, para detenerse.
 
-El \textbf{escaneador} es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete \textit{wifiRaw} o la detección de dispositivos Bluetooth. Éste realiza la interpretación de los octetos conseguidos por la interfaz de red. 
+El \textbf{escaneador} es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete \textit{wifiRaw} o la detección de dispositivos Bluetooth. Éste realiza la interpretación de los octetos conseguidos por la interfaz de red, es decir, todos los bits capturados como trama.
 % Antonio - aclarad lo de los octetos (la MAC o lo que sean)
-Si el octeto es válido y es posible interpretarlo 
+% Antares - Directamente los octetos conseguidos por la interfaz de red, es decir, los bytes a lo bruto.
+Si el octeto obedece a un formato conocido e interpretable 
 % Antonio - ¿por qué no sería posible interpretarlo?
+% Antares - se pueden capturar "partes" del paquete o paquetes cuyas cabeceras no estén contempladas en el scanner.
 se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante, gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE y pueden usarse para identificar univocamente al fabricante del dispositivo que genera la MAC. 
 % Antonio - los da el IEEE? :D 
 % Yo pondría algo como 'al seguir el estándar definido por el IEEE' FERGU: arreglado
@@ -370,13 +390,14 @@ De esta forma Lilith sirve como pasarela entre las dos redes, la local y la red 
 
 % -------------------------------------------------------------
 
-\subsubsection{Abdiel: Servidor de entrada de datos}
+\subsubsection{Abdiel: Servidor de captura de datos}
 % Antonio - ¿de entrada o de almacenamiento?
+% Antare - de captura
 
 Abdiel es el software que provee los servicios de la API REST de comunicación empleados por Raziel. Está desarrollado en PHP considerando especialmente la atomicidad de las operaciones.
 % Antonio - para...
 
-Entre otros servicios, proporciona la conexión y desconexión al sistema del software de captación, el sistema de privilegios, el servicio de actualización del software y la incorporación de pasos de dispositivos al sistema.
+Entre otros servicios, proporciona la conexión y desconexión al sistema del software de captación, el sistema de privilegios, el servicio de actualización del software y el almacenamiento de pasos de dispositivos al sistema.
 % Antonio - ¿'el almacenamiento' en lugar de 'la incorporación'?
 
 Este servicio es el encargado de almacenar los datos de los pasos, por tanto, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos (Alejandría).
@@ -385,8 +406,9 @@ Este servicio es el encargado de almacenar los datos de los pasos, por tanto, se
 
 \subsubsection{Alejandría: Base de datos local}
 
-Alejandría es la base de datos donde se almacena la información de los pasos capturada en los dispositivos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas e índices, que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
+Alejandría es la base de datos donde se almacena la información de los pasos capturada en los dispositivos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas e índices, que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida en la nube, ya que contiene los pasos individuales.
 % Antonio - ¿eso qué quiere decir?
+% Antares - que nadie salvo yo tiene acceso a esos datos, que no se publican tal cual en la nube.
 
 Dispone de procedimientos optimizados para el cálculo del número total de pasos captados en ventanas temporales para los dispositivos de captación, así como para el cálculo de re-ocurrencia de dispositivos (detectados) en distintos nodos.
 
@@ -397,7 +419,10 @@ Estos procedimientos son invocados por el software \textit{Ezequiel} para recole
 \subsubsection{Ezequiel: Publicación en la nube}
 
 Ezequiel es el software encargado del acceso a la base datos, consulta y generación de resúmenes de datos, aplicación de algoritmos de predicción y minería de datos y difusión los resultados en la nube \textit{Anan}.
+
+Actualmente realiza predicción en tiempo real empleando tanto métodos basados en regresión lineal como en máquinas de vector soporte.
 % Antonio - esto habría que extenderlo un poco. Es un componente clave (desde nuestro punto de vista GeNeurino). Explicar un poco los algoritmos disponibles, su utilidad, etc... ;)
+% Antares - pues si, pero no se me ocurre que más poner xD Si Fergu quiere poner alguna cita :P
 
 % --------------------------------------------------------
 
