@@ -264,7 +264,7 @@ A continuación se describen estos elementos, junto con las consideraciones tomad
 
 \subsubsection{Horeb: Sistema Operativo}
 % Antonio - por qué ese nombre?
-Las Raspberry Pi Model A empleadas tienen un procesador ARM6 \footnote{En las nuevas Raspberry Pi 2, el procesador ha sido cambiado por un ARM7 lo que permite elegir una mayor cantidad de Sistemas Operativos compatibles con la arquitectura} por lo cual es necesario instalar un sistema operativo que sea compatible con la arquitectura de dicho procesador. En este caso el Sistema Operativo elegido es Raspbian, distribución basada en Debian enfocada en la compatibilidad con Raspberry Pi. Hace uso de la versión 3.10.24+ del kernel de Linux y nos permite disponer de un entorno Linux completo en un sistema de placa única como es Raspberry.
+Las Raspberry Pi Model A empleadas tienen un procesador ARM6 \footnote{En las nuevas Raspberry Pi 2, el procesador ha sido cambiado por un ARM7 lo que permite elegir una mayor cantidad de Sistemas Operativos compatibles con la arquitectura.} por lo cual es necesario instalar un sistema operativo que sea compatible con la arquitectura de dicho procesador. En este caso el Sistema Operativo elegido es Raspbian, distribución basada en Debian enfocada en la compatibilidad con Raspberry Pi. Hace uso de la versión 3.10.24+ del kernel de Linux y nos permite disponer de un entorno Linux completo en un sistema de placa única como es Raspberry.
 
 Las ventajas de emplear un sistema operativo completo son numerosas: administración remota, sistema de logs y cron nativos, repositorios de software,etc.
 
@@ -361,55 +361,74 @@ El \textbf{difusor}, manda periodiamente al servidor, mediante una petición REST
 
 \subsubsection{Lilith: Pasarela de red}
 
-Dado que el sistema puede ser implantado en un sistema de red complejo como puede ser el perteneciente a un organismo público, nos vemos en la problemática de comunicar nuestros dispositivos con nuestro servidor de forma que no suponga una vulnerabilidad en la red o en redes que no dispongan de salida a Internet ya que sean de ámbito local.
+Dado que el sistema puede ser implantado en una arquitectura de red compleja, como puede ser la perteneciente a un organismo público, nos vemos en la problemática de comunicar los dispositivos con el servidor de forma que no suponga una vulnerabilidad en la red o en redes que no dispongan de salida a Internet (las de ámbito local).
 
-Para ello se puede habilitar una Raspberry Pi corriendo Horeb como sistema operativo, y haciendo uso del sistema Lilith para hacer la redirección del tráfico entre las otras Raspberry y el Servidor.
+Para ello se puede habilitar una Raspberry Pi con Horeb como sistema operativo, que haría uso del sistema \textit{Lilith} para hacer la transmisión del tráfico entre las otras Raspberry y el Servidor.
 
-De esta forma Lilith sirve como pasarela de red entre las dos redes, la local y la red global que comunica al servidor.
+De esta forma Lilith sirve como pasarela entre las dos redes, la local y la red global que comunica al servidor.
+
 
 % -------------------------------------------------------------
 
-\subsubsection{Abdiel: El servidor de entrada de datos}
+\subsubsection{Abdiel: Servidor de entrada de datos}
+% Antonio - ¿de entrada o de almacenamiento?
 
-Abdiel es el software que provee los servicios de la API REST de comunicación empleados por Raziel. Está desarrollado en PHP haciendo especial cuidado en la atomicidad de las operaciones.
+Abdiel es el software que provee los servicios de la API REST de comunicación empleados por Raziel. Está desarrollado en PHP considerando especialmente la atomicidad de las operaciones.
+% Antonio - para...
 
-Entre otros servicios, proporciona la conexión y desconexión al sistema de los software de captación, el sistema de privilegios, el servicio de actualización del software y la incorporación de pasos de dispositivos al sistema.
+Entre otros servicios, proporciona la conexión y desconexión al sistema del software de captación, el sistema de privilegios, el servicio de actualización del software y la incorporación de pasos de dispositivos al sistema.
+% Antonio - ¿'el almacenamiento' en lugar de 'la incorporación'?
 
-El servicio encargado de almacenar los pasos, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos Alejandría.
+Este servicio es el encargado de almacenar los datos de los pasos, por tanto, se encarga de descomprimirlos, procesarlos y mandarlos en lotes a la base de datos (Alejandría).
+
+% -------------------------------------------------------------------
 
 \subsubsection{Alejandría: Base de datos local}
 
-Alejandría es la base de datos donde son almacenados la información de los pasos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas, e índices que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
+Alejandría es la base de datos donde se almacena la información de los pasos capturada en los dispositivos. Está basada en MySQL haciendo uso de diversos mecanismos de optimización tales como particionado de tablas e índices, que permiten el acceso a la información en tiempo constante. Esta base de datos es privada y no es difundida.
+% Antonio - ¿eso qué quiere decir?
 
-Dispone de procedimientos optimizados para el cálculo del número total de dispositivos en ventanas temporales para los dispositivos de captación, así como para el cálculo de re-ocurrencia de dispositivos en distintos nodos.
+Dispone de procedimientos optimizados para el cálculo del número total de pasos captados en ventanas temporales para los dispositivos de captación, así como para el cálculo de re-ocurrencia de dispositivos (detectados) en distintos nodos.
 
-Estos procedimientos son invocados por el software Ezequiel para recolectar los datos y publicarlos en la nube.
+Estos procedimientos son invocados por el software \textit{Ezequiel} para recolectar los datos y publicarlos en la nube.
+
+% -------------------------------------------------------
 
 \subsubsection{Ezequiel: Publicación en la nube}
 
-Ezequiel es el software encargado del acceso a la base datos, conseguir resúmenes de los datos, aplicar los algoritmos de predicción y minería de datos y difundir los resultados en la nube Anan.
+Ezequiel es el software encargado del acceso a la base datos, consulta y generación de resúmenes de datos, aplicación de algoritmos de predicción y minería de datos y difundisión los resultados en la nube \textit{Anan}.
+% Antonio - esto habría que extenderlo un poco. Es un componente clave (desde nuestro punto de vista GeNeurino). Explicar un poco los algoritmos disponibles, su utilidad, etc... ;)
+
+% --------------------------------------------------------
 
 \subsubsection{Anan: La nube}
 
-Anan es el nombre otorgado a la nube basada en la tecnología de Google en la que se almacenan los datos con el fin de darle difusión a los mismos. En Anan los datos son almacenados en tablas BigTable NoSQL mediante la tecnología de Google Fusion Tables. Esta tecnología provee una base de datos geolocalizada, siendo la empleada en otras tecnologías de Google como Google Maps.
+Anan es el nombre otorgado a la nube basada en la tecnología de Google en la que se almacenan los datos con el fin de darle difusión a los mismos. En Anan los datos son almacenados en tablas \textit{BigTable NoSQL} mediante la tecnología de Google Fusion Tables. Esta tecnología provee una base de datos geolocalizada (empleada en otras tecnologías de Google como Google Maps).
 
 Anan se encarga también de proveer gráficas interactivas y mapas del estado histórico, actual y predicho de los distintos nodos.
 
 
-
-
-
+% **********************************************************************
 
 \section{Prototipo experimental}
 \label{sec:prototipo}
 
 
+% Antonio - Esto habrá que completarlo, ¿no? XD
+
+% Antonio - no olvidarse de decir que esto está abierto (o lo de SIPESCA), al menos y poner la URL. ;)
+
+% **********************************************************************
+
 \section{Conclusiones y trabajo futuro}
 \label{sec:conclusiones}
 
-Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización, de bajo coste, autónomos y que permitan la detección univoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de los dispositivos Bluetooth y WiFi de los agentes a medir, permitiendo su identificación de forma univoca y anónima. Se ha descrito en detalle el hardware a utilizar, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación y pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local) así como el servicio de publicación de datos en la nube.
+Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización de bajo coste, autónomos y que permitan la detección unívoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de dispositivos Bluetooth y WiFi, que portan los agentes detectar (personas o vehículos). Esto permitirá su identificación de forma univoca y anónima (respetando la ley de privacidad). 
 
-Como trabajo futuro se está planteando utilizar el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá añadir nuevos dispositivos de captación (GSM, luminosidad, temperatura, etc.). Además, distintos algoritmos de predicción, y combinación con otras fuentes de datos serán añadidos al servidor de procesamiento.
+En el trabajo se ha descrito en detalle el hardware utilizado, Raspberry Pi Model A, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación, pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local). Además, se ha  comentado el servicio de publicación de datos en la nube que se usa en el sistema.
+
+Como trabajo futuro se plantea mejorar el sistema utilizando el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá, principlamente, mejorar el procesamiento del sistema (con paralelización en hebras) y añadir nuevos sensores de captación (GSM, luminosidad, temperatura, etc). 
+Además, se planea diseñar y ofrecer distintos algoritmos de predicción, así como la combinación de los datos capturados con otras fuentes de datos abiertas.
 
 
 \section*{Agradecimientos}
@@ -417,7 +436,7 @@ Este artículo ha sido financiado en parte por los proyectos
 TIN2014-56494-C4-3-P (EphemeCH),
 SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013),
 SPIP2014-01437 (Dirección General de Tráfico), 
-PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) y PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
+PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) y el proyecto V17-2015 del programa de Microproyectos CEI BioTIC 2015 de Granada.
 
 
 \bibliographystyle{Jornadas}
