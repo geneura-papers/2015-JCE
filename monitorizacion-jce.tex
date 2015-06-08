@@ -26,7 +26,7 @@
 \title{Arquitectura de bajo coste para monitorización de vehículos y personas usando Bluetooth y WiFi}
 
 \author{%
-     P. García-Sánchez, A. Fernández-Ares, P. A. Castillo, M. I. García Arenas,  P. de las Cuevas, A. M. Mora, G. Romero, J. J. Merelo\thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pablogarcia, antares, pacv, mgarenas, paloma, gustavo, jmerelo}@ugr.es}},
+     P. García-Sánchez, A. Fernández-Ares, P. A. Castillo, M. I. García Arenas,  P. de las Cuevas, G. Romero, J. J. Merelo, J. González\thanks{Dpto. de Arquitectura y Tecnología de Computadores, Universidad de Granada, e-mail: {\tt {pablogarcia, antares, pacv, mgarenas, paloma, gustavo, jmerelo, jesusgonzalez}@ugr.es}},
      A. M. Mora%
      \thanks{Departamento de Teoría de la Señal, Telemática y Comunicaciones, Universidad de Granada, e-mail: {\tt amorag@ugr.es }},
      P. García-Fernández%
@@ -42,10 +42,10 @@
 
 \begin{abstract}
 Actualmente existen distintos sistemas de monitorización de tráfico de vehículos y movilidad de personas, como las espiras 
-% Antonio - hay un nombre más 'tecnico' para las espiras'?
-o las cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de ellos no permiten una identificación unívoca de un mismo vehículo o persona, o, de hacerlo, esto podría suponer una violación de la privacidad de dicha persona. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de los desplazamientos con un procesamiento cercano al tiempo real 
+% Antonio - hay un nombre más 'tecnico' para las espiras'? FERGU: que yo sepa no xD
+o las cámaras de detección de matrículas. Sin embargo, estos sistemas pueden resultar excesivamente caros y difíciles de mantener y desplegar. Además, muchos de ellos no permiten una identificación unívoca de un mismo vehículo o persona, o, de hacerlo, esto podría suponer una violación de la privacidad de dicha persona. Es por ello necesario considerar un sistema de bajo coste que permita la monitorización de los desplazamientos, con un procesamiento cercano al tiempo real 
 % Antonio - porcesamiento de qué? no se ha justificado por qué hace falta que sea en tiempo real. ;)
-con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este artículo describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas detectados mediante mecanismos que supervisan las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos inteligentes. 
+con el fin de proporcionar a los ciudadanos información para la toma de decisiones en el ámbito de la movilidad. Este artículo describe el entorno hardware y software de un sistema de bajo coste para la monitorización y procesamiento de datos de vehículos y personas detectados mediante mecanismos que supervisan las comunicaciones Bluetooth y Wifi (de forma anónima) de sus dispositivos móviles. 
 % Antonio - esto queda muy cool, pero yo no lo pondría así. Yo pondría 'dispositivos móviles' o 'portables'
 \end{abstract}
 
@@ -63,8 +63,8 @@ sobre la cuantía de vehículos que han circulado. Muchas de esas
 tecnologías son incapaces de identificar el mismo vehículo en
 diferentes sitios u ocurrencias sobre el mismo dispositivo
 capturado, limitándose tan solo a contar y obtener algún tipo
-de información vaga sobre el tipo de vehículo 
-% Antonio - eso de 'vaga' no lo diria yo...
+de información limitada sobre el tipo de vehículo 
+% Antonio - eso de 'vaga' no lo diria yo... FERGU: pongo limitada
 \cite{traffic13,martin2003detector}.
 Los sistemas que sí son capaces de reconocer vehículos, hacen uso de tecnologías basadas en cámaras de vídeo y reconocimiento óptico de caracteres (OCR) de las matrículas, lo cual puede entrar en conflicto con las leyes de privacidad
 y derecho a la intimidad vigentes.
@@ -75,7 +75,7 @@ tanto en vehículos principales, como empleando transportes compartidos (públicos
 Contar con un sistema de información sobre el movimiento no sólo de vehículos sino de personas y proveer mecanismos de predicción de dichos movimientos se antoja clave en el contexto actual convergente a las \textit{Smart Cities}.
 Con un alto porcentaje de la población que posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
 como teléfonos móviles, obtener información sobre la situación y movimiento de dichos individuos basándose en la
-detección de los dispositivos inteligentes 
+detección de estos dispositivos inteligentes 
 % Antonio - lo de inteligentes nunca me ha gustado...yo lo quitaría
 que portan encima significaría poder gestionar de manera óptima las
 principales redes de desplazamiento. 
@@ -96,7 +96,6 @@ privado, o, al menos, más optimizados.
 
 Estos objetivos son los que nos hemos planteado en el presente
 trabajo, 
-%
 los cuales pasan por contar con un sistema de información y
 de predicción de tráfico para que puedan ser utilizados con el
 fin de reducir los desplazamientos individuales, así como incrementar
@@ -146,14 +145,14 @@ agentes en la ciudad.
 % Antonio - esta frase  ('capitalizado...ciudad') queda muy formal, supongo que la habréis sacado de alguna reunión con jefazos de tráfico o algo... :D
 \end{itemize}
 
-Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. En \cite{Castillo13Indicadores}, los autores presentaron la idea preliminar así como los resultados obtenidos a partir de unas pruebas preliminares. Este trabajo viene a completar el anterior, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, 
+Todas estas necesidades se han tenido en cuenta para desarrollar la arquitectura hardware y software presentada en este artículo, basada en nodos de captación de dispositivos Bluetooth y Wifi. En \cite{Castillo13Indicadores}, los autores presentaron la idea preliminar así como los resultados obtenidos a partir de unas pruebas preliminares. Este trabajo viene a completar el anterior, describiendo el sistema a nivel hardware y software en profundidad, permitiendo a nuevos investigadores usarlo como base para futuras experimentaciones, 
 % Antonio - esto de los investigadores lo quitaría. :P
 además de mostrar las nuevas funcionalidades añadidas.
 
 
 % Antonio - hacer más hincapié en lo que se presenta aquí: la arquitectura detallada del sistema a nivel hardware y software, no lo del tráfico en sí. ;D
 
-El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección \ref{sec:soa}), la parte hardware y software del sistema es descrita en la Sección \ref{sec:descripcion}. Los resultados de un prototipo experimental se comentan en la Sección \ref{sec:prototipo} y finalmente se presentan las conclusiones y trabajo futuro en la sección \ref{sec:conclusiones}. 
+El resto del artículo se estructura como sigue: tras el Estado del Arte (Sección \ref{sec:soa}), la parte hardware y software del sistema es descrita en la Sección \ref{sec:descripcion}. Finalmente se presentan las conclusiones y trabajo futuro en la sección \ref{sec:conclusiones}. 
 
 % *************************************************************************
 
@@ -167,8 +166,8 @@ Según la inmediatez con la que se obtienen los datos, los sistemas pueden clasif
 
 Por otra parte, las tecnologías de monitorización actuales pueden considerarse invasivas, si éstas están instaladas en el pavimento de la carreteras, no invasivas cuando los sistemas no tienen contacto con la carretera y tienen mínimo o nulo efecto sobre el flujo de tráfico, o bien son tecnologías de monitorización a través de vehículos flotantes.
 
-De forma que, los principales métodos de monitorización del tráfico se basan en el uso de tubos neumáticos, espiras 
-% Antonio - espiras...¿magnéticas? Es que queda muy soso lo de espiras a secas.
+De forma que, los principales métodos de monitorización del tráfico se basan en el uso de tubos neumáticos, espiras magnéticas
+% Antonio - espiras...¿magnéticas? Es que queda muy soso lo de espiras a secas. FERGU: done
 o vehículos flotantes \cite{rodrigue2013geography}.  La principal desventaja de estos sistemas es que no son capaces de identificar de forma unívoca a los vehículos detectados, muy útil para trazar matrices origen/destino, por ejemplo. Además se centran sólo en la detección de vehículos, ignorando aspectos como el número de ocupantes por vehículo o los desplazamientos a pie.
 % Antonio - bueno, nosotros con lo de los ocupantes también tenemos un problema. Habría que señalarlo al hablar del sistema. ;)
 
@@ -181,7 +180,7 @@ El empleo de dispositivos de bajo coste como el propuesto, que monitoriza las se
 % Antonio - no todas (por ejemplo lo de los ocupantes)
 Se identifica de forma única a cada dispositivo pero sin vulnerar la ley de protección de datos, dado que no existe un registro 
 % Antonio - si existe un registro. ;D
-ni forma de vincular un dispositivo con su usuario o dueño.; además, su bajo coste permite su despliegue en zonas consideradas como secundarias, que de otra manera no serían monitorizadas.
+ni forma de vincular un dispositivo con su usuario o dueño; además, su bajo coste permite su despliegue en zonas consideradas como secundarias, que de otra manera no serían monitorizadas.
 
 Existen sistemas que han utilizado routers WiFi para posicionamiento. Por ejemplo, en \cite{Rivadeneyra10Wifi} se utiliza la intensidad de hotspots WiFi en un dispositivo móvil para localización en interiores, usando una base de datos de intensidades y posiciones como base. 
 % Antonio - 'base' => 'referencia'?
@@ -212,18 +211,18 @@ Este sistema no debe entenderse como un elemento aislado y atómico, sino como un
 
 \subsection{Descripción de los dispositivos de monitorización}
 
-El dispositivo de monitorización está basado en \textit{Raspberry Pi}, 
+El dispositivo de monitorización está basado en \textit{Raspberry Pi}\footnote{\url{https://www.raspberrypi.org/}}, 
 % Antonio - yo pondría una url en nota al pie a la web de Raspberri Pi
 en concreto el sistema funcional presentado
 en este artículo hace uso de Raspberry Pi Model A (Figura \ref{fig:raspberry}), aunque se está actualizando el sistema operativo y software para hacerlo funcionar sobre Raspberry Pi 2 Model B, pues su mayor capacidad de cómputo paralelo puede suponer una optimización significativa del funcionamiento del dispositivo de captación. Sin embargo, el cambio de arquitectura sufrido entre los modelos, hace que sea necesario un estudio concienzudo de la migración.
 
 Además de la Raspberry Pi que hace de centro de procesamiento, son necesarios otros elementos hardware:
-%\begin{itemize}
-%\item Tarjeta de red Wifi
-%\item Tarjeta de red Bluetooth
-%\item Antenas de captación
-%\item Caja protectora estanca certificada.
-%\end{itemize}
+\begin{itemize}
+\item Tarjeta de red Wifi
+\item Tarjeta de red Bluetooth
+\item Antenas de captación
+\item Caja protectora estanca certificada.
+\end{itemize}
 % Antonio - cuidado que esto está comentado y habria que cambiar la frase de antes. ;)
 
 La elección de la tarjeta de red no es trivial, pues ha de cumplir varios requisitos: Es necesario que sea compatible con el sistema operativo elegido, que sea capaz de operar en modo monitor, lo que permitirá la captura promiscua de paquetes (conocido como \textit{sniffering}). Además, según el emplazamiento del dispositivo, puede ser requerida una antena con características especiales (omnidireccional o direccional, con mayor o menor ganancia, integrada en el dispositivo o alejada varios metros) por lo que disponer de un sistema estándar de antena es un requerimiento añadido. La tarjeta elegida es una \textit{TP-Link TL-WN722N} 
@@ -257,8 +256,8 @@ La caja estanca empleada para albergar el dispositivo de monitorización cumple l
 
 Como se puede apreciar en la Figura \ref{fig:sistema}, existen cinco partes bien diferenciadas a las que hemos etiquetado con un nombre, \textit{Raziel, Lilith, Abdiel, Ezequiel} y \textit{Anan}, 
 % Antonio - yo veo demasiados nombres, usaría uno sólo para el sistema y yastá. Pero bueno, si a Antares le gusta...
-que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith, que están implementados en Java y en PHP respectivamente. Ambas se ejecutan sobre el sistema operativo Horeb. 
-% Antonio - ¿lo cualo? ¿qué S.O. es ese?
+que se relacionan entre ellas unidireccionalmente según el flujo de los datos. En el dispositivo se ejecutan Raziel y Lilith, que están implementados en Java y en PHP respectivamente. Ambas se ejecutan sobre el sistema operativo, llamado Horeb en este sistema. 
+% Antonio - ¿lo cualo? ¿qué S.O. es ese? FERGU: cambiado
 Ambas partes envían datos a Abdiel de forma independiente. Éste también está  implementado en PHP, y es el único que tiene acceso a la base de datos Alejandría gestionada por MySQL. 
 % Antonio - otros dos nombres... :_(
 A continuación se describen estos elementos, junto con las consideraciones tomadas a la hora de diseñarlos.
@@ -330,8 +329,8 @@ Entre las tareas del software se encuentran funciones para el mantenimiento de s
 % Antonio - esto cómo se hace?
 De modo que, por ejemplo, dependiendo de la red, el software es capaz de establecer mecanismos para la conexión con el exterior mediante Ethernet, Wifi o 3G. En el caso de la conexión Wifi, la misma tarjeta de red es empleada tanto para la captura de paquetes como para establecer dicha conexión. Esto es posible gracias a la virtualización de dos interfaces de red al mismo tiempo.
 
-Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar compuesto por tres elementos:
-% Antonio - hay 4 elementos. XD
+Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar compuesto por cuatro elementos:
+% Antonio - hay 4 elementos. XD FERGU: arreglao
 
 \begin{itemize}
 \item Hebra de control
@@ -346,9 +345,9 @@ El \textbf{escaneador} es el encargado implementar el \textit{listener} que obed
 % Antonio - aclarad lo de los octetos (la MAC o lo que sean)
 Si el octeto es válido y es posible interpretarlo 
 % Antonio - ¿por qué no sería posible interpretarlo?
-se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante, gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE. 
+se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante, gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE y pueden usarse para identificar univocamente al fabricante del dispositivo que genera la MAC. 
 % Antonio - los da el IEEE? :D 
-% Yo pondría algo como 'al seguir el estándar definido por el IEEE'
+% Yo pondría algo como 'al seguir el estándar definido por el IEEE' FERGU: arreglado
 
 En Wifi esta información se obtiene gracias al protocolo {\em radiotap}, que permite conseguir información de la propia tarjeta sobre el paquete capturado. De esta forma se consigue la intensidad de la señal con la que ha sido capturado el paquete y la cabecera 802.11 que incluye las MACs. En ningún momento, se procesa ni accede a los octetos capturados pertenecientes al cuerpo de la trama.
 
