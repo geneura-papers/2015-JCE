@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{traffic13}
+U.S~Department of~Transportation,
+\newblock {\em Traffic Monitoring Guide},
+\newblock Washington DC, USA, 2013.
+
+\bibitem{martin2003detector}
+Peter~T. Martin, Yuqi Feng, Xiaodong Wang, et~al.,
+\newblock ``Detector technology evaluation,''
+\newblock Tech. {R}ep., Mountain-Plains Consortium, 2003.
+
+\bibitem{Castillo13Indicadores}
+P.~A.~Castillo Valdivieso, P.~Garc{\'{\i}}a{-}S{\'{a}}nchez, A.~M. Mora, M.~G.
+  Arenas, Gustavo Romero, J.~J. Merelo, A.~Prieto,
+  P.~Garc{\'{\i}}a{-}Fern{\'{a}}ndez, and V.~M. Rivas,
+\newblock ``Estudio de los indicadores de exposici{\'o}n al riesgo mediante un
+  sistema de monitorizaci{\'o}n del tr{\'a}fico basado en la tecnolog{\'i}a
+  bluetooth,''
+\newblock in {\em Actas de las IV Jornadas de Computaci{\'o}n Empotrada (JCE),
+  Madrid, 17-20 Septiembre 2013}, 2013, pp. 132--139.
+
+\bibitem{rodrigue2013geography}
+Jean-Paul Rodrigue, Claude Comtois, and Brian Slack,
+\newblock {\em The geography of transport systems},
+\newblock Routledge, 2013.
+
+\bibitem{sherry2001report}
+L~Sherry,
+\newblock ``Report on non-traditional traffic counting methods,''
+\newblock {\em Tanque Verde Loop Rd. Tucson, AZ}, vol. 85748, pp. 505, 2001.
+
+\bibitem{Rivadeneyra10Wifi}
+A.~Rivadeneyra, J.~C. Segura, and P.~Garc\'ia-S\'anchez,
+\newblock ``{Localizaci\'on en Interiores mediante Wi-Fi},''
+\newblock in {\em {Actas del I Simposio en Computaci\'on Empotrada SICE 2010,
+  (CEDI2010)}}, J.~Gonz\'alez et~al., Eds. 2010, pp. 113--120, IBERGARCETA
+  PUBLICACIONES, S.L., Madrid.
+
+\bibitem{GarciaFernandezMonitorizacion}
+``Monitorizaci{\'o}n del estado de las carreteras mediante un sistema
+  aut{\'o}nomo y de bajo coste basado en la tecnología bluetooth,''
+\newblock {\em SECURITAS VIALIS, Journal Europeo de Tráfico, Transporte y
+  Seguridad Vial}, vol. 17, pp. 139--160, 2014.
+
+\bibitem{Castillo14Individualized}
+Alessandra Bagnato, Leandro~Soares Indrusiak, Imran~Rafiq Quadri, and Matteo
+  Rossi, Eds.,
+\newblock {\em Studying individualized transit indicators using a new low-cost
+  information system}, chapter~16, pp. 395--415,
+\newblock Advances in Systems Analysis, Software Engineering, and High
+  Performance Computing (ASASEHPC) Book Series. {IGI GLOBAL}, 2014.
+
+\end{thebibliography}
