@@ -355,7 +355,7 @@ En Bluetooth, se obedece al evento de dispositivo visible, es decir, actualmente
 
 El \textbf{monitor} gestiona la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del nuevo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurrido un tiempo prudencial. Los dispositivos que no han sido localizados en dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempo que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales en esas dos ocasiones y un hash de la MAC de dicho dispositivo.
 
-El \textbf{difusor}, manda periodiamente al servidor, mediante una petición REST, los datos comprimidos de los pasos de los dispositivos.
+El \textbf{difusor}, manda periódicamente al servidor, mediante una petición REST, los datos comprimidos de los pasos de los dispositivos.
 
 % ------------------------------------------------------------------
 
@@ -396,7 +396,7 @@ Estos procedimientos son invocados por el software \textit{Ezequiel} para recole
 
 \subsubsection{Ezequiel: Publicación en la nube}
 
-Ezequiel es el software encargado del acceso a la base datos, consulta y generación de resúmenes de datos, aplicación de algoritmos de predicción y minería de datos y difundisión los resultados en la nube \textit{Anan}.
+Ezequiel es el software encargado del acceso a la base datos, consulta y generación de resúmenes de datos, aplicación de algoritmos de predicción y minería de datos y difusión los resultados en la nube \textit{Anan}.
 % Antonio - esto habría que extenderlo un poco. Es un componente clave (desde nuestro punto de vista GeNeurino). Explicar un poco los algoritmos disponibles, su utilidad, etc... ;)
 
 % --------------------------------------------------------
@@ -420,7 +420,7 @@ Actualmente existen distintas necesidades desde el punto de vista de gestión del
 
 En el trabajo se ha descrito en detalle el hardware utilizado, Raspberry Pi Model A, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación, pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local). Además, se ha  comentado el servicio de publicación de datos en la nube que se usa en el sistema.
 
-Como trabajo futuro se plantea mejorar el sistema utilizando el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá, principlamente, mejorar el procesamiento del sistema (con paralelización en hebras) y añadir nuevos sensores de captación (GSM, luminosidad, temperatura, etc). 
+Como trabajo futuro se plantea mejorar el sistema utilizando el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá, principalmente, mejorar el procesamiento del sistema (con paralelización en hebras) y añadir nuevos sensores de captación (GSM, luminosidad, temperatura, etc). 
 Además, se planea diseñar y ofrecer distintos algoritmos de predicción, así como la combinación de los datos capturados con otras fuentes de datos abiertas.
 
 
