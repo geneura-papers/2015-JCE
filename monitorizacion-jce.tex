@@ -214,7 +214,7 @@ Este sistema no debe entenderse como un elemento aislado y atómico, sino como un
 El dispositivo de monitorización está basado en \textit{Raspberry Pi}\footnote{\url{https://www.raspberrypi.org/}}, 
 % Antonio - yo pondría una url en nota al pie a la web de Raspberri Pi
 en concreto el sistema funcional presentado
-en este artículo hace uso de Raspberry Pi Model A (Figura \ref{fig:raspberry}), aunque se está actualizando el sistema operativo y software para hacerlo funcionar sobre Raspberry Pi 2 Model B, pues su mayor capacidad de cómputo paralelo puede suponer una optimización significativa del funcionamiento del dispositivo de captación. Sin embargo, el cambio de arquitectura sufrido entre los modelos, hace que sea necesario un estudio concienzudo de la migración.
+en este artículo hace uso de Raspberry Pi Model B (Figura \ref{fig:raspberry}), aunque se está actualizando el sistema operativo y software para hacerlo funcionar sobre Raspberry Pi 2 Model B, pues su mayor capacidad de cómputo paralelo puede suponer una optimización significativa del funcionamiento del dispositivo de captación. Sin embargo, el cambio de arquitectura sufrido entre los modelos, hace que sea necesario un estudio concienzudo de la migración.
 
 Además de la Raspberry Pi que hace de centro de procesamiento, son necesarios otros elementos hardware:
 \begin{itemize}
@@ -246,7 +246,7 @@ La caja estanca empleada para albergar el dispositivo de monitorización cumple l
 \includegraphics[width=10cm]{imags/raspi.eps}
 %\epsfig{file=images/sindicador.eps,width=12cm}
 
-\caption{Raspberry Pi utilizada en los dispositivos de monitorización.} 
+\caption{Raspberry Pi Model B utilizada en los dispositivos de monitorización.} 
 \label{fig:raspberry} 
 \end{figure*}
 
@@ -264,11 +264,11 @@ A continuación se describen estos elementos, junto con las consideraciones tomad
 
 \subsubsection{Horeb: Sistema Operativo}
 % Antonio - por qué ese nombre?
-Las Raspberry Pi Model A empleadas tienen un procesador ARM6 \footnote{En las nuevas Raspberry Pi 2, el procesador ha sido cambiado por un ARM7 lo que permite elegir una mayor cantidad de Sistemas Operativos compatibles con la arquitectura.} por lo cual es necesario instalar un sistema operativo que sea compatible con la arquitectura de dicho procesador. En este caso el Sistema Operativo elegido es Raspbian, distribución basada en Debian enfocada en la compatibilidad con Raspberry Pi. Hace uso de la versión 3.10.24+ del kernel de Linux y nos permite disponer de un entorno Linux completo en un sistema de placa única como es Raspberry.
+Las Raspberry Pi Model B empleadas tienen un procesador ARM6 \footnote{En las nuevas Raspberry Pi 2, el procesador ha sido cambiado por un ARM7 lo que permite elegir una mayor cantidad de Sistemas Operativos compatibles con la arquitectura.} por lo cual es necesario instalar un sistema operativo que sea compatible con la arquitectura de dicho procesador. En este caso el Sistema Operativo elegido es Raspbian, distribución basada en Debian enfocada en la compatibilidad con Raspberry Pi. Hace uso de la versión 3.10.24+ del kernel de Linux y nos permite disponer de un entorno Linux completo en un sistema de placa única como es Raspberry.
 
 Las ventajas de emplear un sistema operativo completo son numerosas: administración remota, sistema de logs y cron nativos, repositorios de software,etc.
 
-Sin embargo es necesario realizar algunas modificaciones al SO para optimizarlo al problema de captación que nos ocupa: El almacenamiento físico de las Raspberry Pi está basado en tarjetas SD (microSD en Model B o superiores). Si bien las velocidades que alcanzan las tarjetas de Clase 10 es más que suficiente para que funcione un sistema operativo, existe un problema documentado de corrupción 
+Sin embargo es necesario realizar algunas modificaciones al SO para optimizarlo al problema de captación que nos ocupa: El almacenamiento físico de las Raspberry Pi está basado en tarjetas SD (microSD en Model B+ o superiores). Si bien las velocidades que alcanzan las tarjetas de Clase 10 es más que suficiente para que funcione un sistema operativo, existe un problema documentado de corrupción 
 % Antonio - corrompimiento? No sé si corrupción aplica bien aquí. :/
 de las tarjetas SD ante fallos eléctricos tales como perdida de alimentación o subidas de tensión.
 
@@ -321,7 +321,7 @@ Por último, es sistema operativo incorpora el Software \textit{Raziel} como serv
 
 Raziel es el software integrado como demonio del sistema encargado de la detección de pasos de dispositivos (correspondientes a personas o vehículos) mediante la captura de paquetes Wifi y la localización de dispositivos Bluetooth cercanos. Estas capturas son procesadas enviadas a un servidor (Abdiel) periódicamente.
 
-El software ha sido desarrollado en Java siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model A empleada en los prototipos descritos dispone de un único procesador, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
+El software ha sido desarrollado en Java siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model B empleada en los prototipos descritos dispone de un único procesador, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
 
 Se ha implementado de forma modular cada una de las funcionalidades del software de forma que operen de manera autónoma. Las distintas hebras y subsistemas se comunicarán por medio de memoria compartida.
 
@@ -418,7 +418,7 @@ Anan se encarga también de proveer gráficas interactivas y mapas del estado hist
 
 Actualmente existen distintas necesidades desde el punto de vista de gestión del transporte, como la necesidad de dispositivos de captación de datos y monitorización de bajo coste, autónomos y que permitan la detección unívoca de los usuarios para poder realizar decisiones sobre la gestión de la movilidad. Este trabajo describe un sistema hardware y software basado en nodos de captación de dispositivos Bluetooth y WiFi, que portan los agentes detectar (personas o vehículos). Esto permitirá su identificación de forma univoca y anónima (respetando la ley de privacidad). 
 
-En el trabajo se ha descrito en detalle el hardware utilizado, Raspberry Pi Model A, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación, pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local). Además, se ha  comentado el servicio de publicación de datos en la nube que se usa en el sistema.
+En el trabajo se ha descrito en detalle el hardware utilizado, Raspberry Pi Model B, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación, pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local). Además, se ha  comentado el servicio de publicación de datos en la nube que se usa en el sistema.
 
 Como trabajo futuro se plantea mejorar el sistema utilizando el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá, principalmente, mejorar el procesamiento del sistema (con paralelización en hebras) y añadir nuevos sensores de captación (GSM, luminosidad, temperatura, etc). 
 Además, se planea diseñar y ofrecer distintos algoritmos de predicción, así como la combinación de los datos capturados con otras fuentes de datos abiertas.
