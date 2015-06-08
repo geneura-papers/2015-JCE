@@ -320,17 +320,18 @@ Por último, es sistema operativo incorpora el Software \textit{Raziel} como serv
 
 \subsubsection{Raziel: Software de Captación}
 
-Raziel es el software integrado como demonio del sistema encargado de la detección de pasos de personas mediante la captura de paquetes Wifi y localización de dispositivos Bluetooth cercanos. Estas capturas son procesadas como pasos de un dispositivo y son enviadas al servidor Abdiel periódicamente.
+Raziel es el software integrado como demonio del sistema encargado de la detección de pasos de dispositivos (correspondientes a personas o vehículos) mediante la captura de paquetes Wifi y la localización de dispositivos Bluetooth cercanos. Estas capturas son procesadas enviadas a un servidor (Abdiel) periódicamente.
 
-Este software está desarrollado en Java siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model A empleada en los prototipos descritos dispone de una única unidad de procesamiento, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
+El software ha sido desarrollado en Java siguiendo un metodología de programación orientada a eventos y multihebrada. A pesar de que la Raspberry Pi Model A empleada en los prototipos descritos dispone de un único procesador, el software ha sido desarrollado teniendo en mente su posterior aplicación a arquitecturas con mayor cantidad de unidades de procesamiento, como la Raspberry Pi 2.
 
-Se ha implementado de forma modular cada una de las funcionalidades del software de forma que operen de manera autónoma, comunicándose las distintas hebras y subsistemas mediante memoria compartida.
+Se ha implementado de forma modular cada una de las funcionalidades del software de forma que operen de manera autónoma. Las distintas hebras y subsistemas se comunicarán por medio de memoria compartida.
 
-Entre las tareas del software se encuentran las tareas de mantenimiento del mismo. Debido a que es posible que el sistema no disponga de administración remota dependiendo de la infraestructura de red donde sea colocado, el software tiene que ser el encargado de realizar el mantenimiento de si mismo.
+Entre las tareas del software se encuentran funciones para el mantenimiento de sí mismo, ya que cabe la posibilidad de que el sistema no disponga de administración remota (dependiendo de la infraestructura de red donde sea colocado).
+% Antonio - esto cómo se hace?
+De modo que, por ejemplo, dependiendo de la red, el software es capaz de establecer mecanismos para la conexión con el exterior mediante Ethernet, Wifi o 3G. En el caso de la conexión Wifi, la misma tarjeta de red es empleada tanto para la captura de paquetes como para establecer dicha conexión. Esto es posible gracias a la virtualización de dos interfaces de red al mismo tiempo.
 
-Dependiendo de la red, el software es capaz de establecer mecanismos para la conexión con el exterior mediante Ethernet, Wifi o 3G. En el caso de la conexión Wifi, la misma tarjeta de red es empleada tanto para la captura de paquetes para establecer la conexión. Esto es posible gracias a la virtualización de dos interfaces de red al mismo tiempo.
-
-Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar compuesto de tres elementos:
+Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar compuesto por tres elementos:
+% Antonio - hay 4 elementos. XD
 
 \begin{itemize}
 \item Hebra de control
@@ -339,17 +340,25 @@ Cada sistema de captación (Bluetooth y Wifi) tiene un funcionamiento similar com
 \item Difusor
 \end{itemize}
 
-La hebra de control es la encargada de iniciar las interfaces y comunicaciones con el dispositivo físico, así como estar a la escucha de las peticiones del sistema, como por ejemplo, para detenerse.
+La \textbf{hebra de control} es la encargada de iniciar las interfaces y comunicaciones con el dispositivo físico, así como estar a la escucha de las peticiones del sistema, como por ejemplo, para detenerse.
 
-El escaneador es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete wifiRaw o la detección de dispositivos Bluetooth. Realiza la interpretación de los octetos conseguidos por la interfaz de red. Si el octeto es válido y es posible interpretarlo se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE. 
+El \textbf{escaneador} es el encargado implementar el \textit{listener} que obedece al evento de captura de paquete \textit{wifiRaw} o la detección de dispositivos Bluetooth. Éste realiza la interpretación de los octetos conseguidos por la interfaz de red. 
+% Antonio - aclarad lo de los octetos (la MAC o lo que sean)
+Si el octeto es válido y es posible interpretarlo 
+% Antonio - ¿por qué no sería posible interpretarlo?
+se genera una ocurrencia de dispositivo que es enviado al monitor mediante memoria compartida. Esta ocurrencia de dispositivo incluye la hora en la que ha sido detectado, la intensidad de la señal (solo en Wifi) así como un hash de la MAC del dispositivo que ha realizado el envío, así como el fabricante, gracias a que los primeros 24 bits de la MAC son otorgados por el IEEE. 
+% Antonio - los da el IEEE? :D 
+% Yo pondría algo como 'al seguir el estándar definido por el IEEE'
 
-En Wifi esta información se obtiene gracias al protocolo {\em radiotap}, que permite conseguir información de la propia tarjeta sobre el paquete capturado. De esta forma se consigue la intensidad de la señal con la que ha sido capturado el paquete y la cabecera 802.11 que incluye las MACs. En ningún momento, se procesa ni accede a los octetos capturados pertenecientes a la cuerpo de la trama.
+En Wifi esta información se obtiene gracias al protocolo {\em radiotap}, que permite conseguir información de la propia tarjeta sobre el paquete capturado. De esta forma se consigue la intensidad de la señal con la que ha sido capturado el paquete y la cabecera 802.11 que incluye las MACs. En ningún momento, se procesa ni accede a los octetos capturados pertenecientes al cuerpo de la trama.
 
-En Bluetooth, se obedece al evento de dispositivo visible. Actualmente solo podemos detectar dispositivos que se encuentran visibles de forma pública. Sin embargo, gracias al protocolo Bluetooth podemos saber que tipo de dispositivo es el que hemos detectado gracias a los bits de tipo de dispositivo y servicios ofrecidos.
+En Bluetooth, se obedece al evento de dispositivo visible, es decir, actualmente solo podemos detectar dispositivos que se encuentran visibles de forma pública. Sin embargo, gracias al protocolo Bluetooth podemos saber que tipo de dispositivo es el que hemos detectado gracias a los bits de tipo de dispositivo y servicios ofrecidos.
 
-El monitor está pendiente de la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del dispositivo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurridos un tiempo prudencial. Los dispositivos que no han sido localizados es dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempos que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales primera y última y un hash de la MAC de dicho dispositivo.
+El \textbf{monitor} gestiona la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del nuevo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurrido un tiempo prudencial. Los dispositivos que no han sido localizados en dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempo que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales en esas dos ocasiones y un hash de la MAC de dicho dispositivo.
 
-El difusor, periódicamente manda al servidor mediante una petición REST los datos comprimidos de los pasos de los dispositivos.
+El \textbf{difusor}, manda periodiamente al servidor, mediante una petición REST, los datos comprimidos de los pasos de los dispositivos.
+
+% ------------------------------------------------------------------
 
 \subsubsection{Lilith: Pasarela de red}
 
@@ -358,6 +367,8 @@ Dado que el sistema puede ser implantado en un sistema de red complejo como pued
 Para ello se puede habilitar una Raspberry Pi corriendo Horeb como sistema operativo, y haciendo uso del sistema Lilith para hacer la redirección del tráfico entre las otras Raspberry y el Servidor.
 
 De esta forma Lilith sirve como pasarela de red entre las dos redes, la local y la red global que comunica al servidor.
+
+% -------------------------------------------------------------
 
 \subsubsection{Abdiel: El servidor de entrada de datos}
 
