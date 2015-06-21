@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{listings}
+\usepackage[spanish]{babel}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -15,10 +16,9 @@
 \newtheorem{theorem}{Teorema}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hyphenation{}
+
 
 \begin{document}
 
@@ -59,8 +59,8 @@ Monitorización, Predicción del Tráfico, Bluetooth, WiFi, Movilidad, Smart Cities
 
 \PARstart{L}{a}  mayoría de los sistemas empleados para monitorizar el flujo
 de tráfico en las carreteras resultan excesivamente caros para
-una implantación en masa, y además solo recogen información
-sobre la cuantía de vehículos que han circulado. Muchas de esas
+una implantación masiva, y además solo recogen información
+sobre la cantidad de vehículos que han circulado. Muchas de esas
 tecnologías son incapaces de identificar el mismo vehículo en
 diferentes sitios u ocurrencias sobre el mismo dispositivo
 capturado, limitándose tan solo a contar y obtener algún tipo
@@ -74,12 +74,9 @@ dejando de lado, por ejemplo, la problemática del control de los desplazamientos
 tanto en vehículos principales, como empleando transportes compartidos (públicos) o desplazamientos a pie.
 
 Contar con un sistema de información sobre el movimiento no sólo de vehículos sino de personas y proveer mecanismos de predicción de dichos movimientos se antoja clave en el contexto actual convergente a las \textit{Smart Cities}.
-Con un alto porcentaje de la población que posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
-como teléfonos móviles, obtener información sobre la situación y movimiento de dichos individuos basándose en la
-detección de estos dispositivos 
-% Antonio - lo de inteligentes nunca me ha gustado...yo lo quitaría
-% Antares - Ale, ahora son tontos :P
-que portan encima significaría poder gestionar de manera óptima las
+Gracias a que un alto porcentaje de la población posee y utiliza cada vez más dispositivos de comunicación ubicuos, tales
+como teléfonos móviles, es posible obtener información sobre la situación y movimiento de dichos individuos basándose en la
+detección de estos dispositivos. Esto puede ayudar a gestionar de manera óptima las
 principales redes de desplazamiento. 
 Dicho sistema ayudaría a las políticas urbanísticas y de ordenación territorial
 a reducir la necesidad de desplazamientos y los tiempos de los mismos, al poder ser planificados por los ciudadanos
@@ -244,7 +241,7 @@ La tarjeta Bluetooth elegida es una \textit{Conceptronic CBT40 NANO}
 ya que es una de las más comunes en el mercado compatibles con Bluetooth 4.0 y de Clase 1. 
 % Antonio - qué significa de Clase 1
 % El alcance de la comunicación viene determinado por su clase. Clase 1 es la de mayor alcance y se reserva para comunicaciones hasta 100 metros. Clase 2 es la empleada por dispositivos móviles comunes. Clase 3 se reserva a periféricos y werabl.es.
-Su interfaz de conexión es USB, pero lamentablemente la antena está integrada dentro del chipset por lo que no es posible cambiarla de forma estándar. Sin embargo, el alcance teórico alcance los 100 metros, con uno efectivo de 25-30 metros, lo cual es un radio de acción más que suficiente para el propósito.
+Su interfaz de conexión es USB, pero lamentablemente la antena está integrada dentro del chipset por lo que no es posible cambiarla de forma estándar. Sin embargo, el alcance teórico es de 100 metros, con uno efectivo de 25-30 metros, lo cual es un radio de acción más que suficiente para el propósito.
 % Antonio - y eso afecta al sistema? decirlo si afecta o si no. ;D
 
 La caja estanca empleada para albergar el dispositivo de monitorización cumple las certificaciones IP67 de protección frente a polvo y humedad y Clase II de aislamiento eléctrico. 
@@ -306,7 +303,7 @@ Se sacrifica por tanto al almacenamiento a lo largo del tiempo y parte de la mem
 Además, debido al uso intensivo del hardware USB (las tarjetas Wifi y Bluetooth), es necesario indicarle al SO que no puede suspender los dispositivos USB para ahorrar energía. Esta medida que en Sistemas Operativos de propósito general es muy útil y supone un ahorro en el consumo bastante significativo, en nuestro sistema supondría la perdida de captación de datos en los momentos en los que la tarjeta estuviese suspendida. Esto se consigue con la opción
 % Antonio - haciendo quñe con la opción? Es decir, cambiándola de '1' a '-1' o qué?
 % Antares - xD
- \textit{usbcore.autosuspend=-1} en el módulo USBCORE del kernel del SO que indica que puede que no puede suspender los dispositivos USB. Normalmente la opción incorpora un intervalo de tiempo que indica cuando tiene que estar sin uso un dispositivo para considerarlo para la suspensión.
+ \textit{usbcore.autosuspend=-1} en el módulo USBCORE del kernel del SO que indica que no puede suspender los dispositivos USB. Normalmente la opción incorpora un intervalo de tiempo que indica cuando tiene que estar sin uso un dispositivo para considerarlo para la suspensión.
 
 \begin{figure*}[htb]
 \begin{lstlisting}
@@ -373,7 +370,7 @@ En Wifi esta información se obtiene gracias al protocolo {\em radiotap}, que per
 
 En Bluetooth, se obedece al evento de dispositivo visible, es decir, actualmente solo podemos detectar dispositivos que se encuentran visibles de forma pública. Sin embargo, gracias al protocolo Bluetooth podemos saber que tipo de dispositivo es el que hemos detectado gracias a los bits de tipo de dispositivo y servicios ofrecidos.
 
-El \textbf{monitor} gestiona la cola de ocurrencias detectadas. Esta hebra es la encarga de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del nuevo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurrido un tiempo prudencial. Los dispositivos que no han sido localizados en dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempo que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales en esas dos ocasiones y un hash de la MAC de dicho dispositivo.
+El \textbf{monitor} gestiona la cola de ocurrencias detectadas. Esta hebra es la encargada de determinar si un dispositivo es descubierto por primera vez o ya ha sido detectado anteriormente a lo largo del tiempo. Actualiza la lista de dispositivos detectados recientemente con la información de la ocurrencia del nuevo. De forma periódica comprueba dicha lista, buscando dispositivos que no hayan sido detectados transcurrido un tiempo prudencial. Los dispositivos que no han sido localizados en dicho periodo de tiempo, son empaquetados como pasos de dispositivos y enviados como memoria compartida al difusor. Un paso de dispositivo está compuesto por dos instantes de tiempo que indican la primera y última vez que se localizó al dispositivo, las intensidades de las señales en esas dos ocasiones y un hash de la MAC de dicho dispositivo.
 
 El \textbf{difusor}, manda periódicamente al servidor, mediante una petición REST, los datos comprimidos de los pasos de los dispositivos.
 
@@ -446,7 +443,7 @@ Actualmente existen distintas necesidades desde el punto de vista de gestión del
 En el trabajo se ha descrito en detalle el hardware utilizado, Raspberry Pi Model B, así como los diferentes elementos software necesarios en el dispositivo de monitorización (sistema operativo, software de captación, pasarela de red) y en los servidores adicionales (servidor de entrada de datos y base de datos local). Además, se ha  comentado el servicio de publicación de datos en la nube que se usa en el sistema.
 
 Como trabajo futuro se plantea mejorar el sistema utilizando el modelo más avanzado de Raspberry Pi (modelo 2), que permitirá, principalmente, mejorar el procesamiento del sistema (con paralelización en hebras) y añadir nuevos sensores de captación (GSM, luminosidad, temperatura, etc). 
-Además, se planea diseñar y ofrecer distintos algoritmos de predicción, así como la combinación de los datos capturados con otras fuentes de datos abiertas.
+Además, se planea diseñar y ofrecer distintos algoritmos de predicción, así como la combinación de los datos capturados con otras fuentes de datos abiertas. Así se podrá realizar un estudio sobre la proporción estadística de dispositivos móviles por vehículo, además de pruebas de velocidad y comportamiento en entornos ruidosos o un análisis de consumos de potencia.
 
 
 \section*{Agradecimientos}
